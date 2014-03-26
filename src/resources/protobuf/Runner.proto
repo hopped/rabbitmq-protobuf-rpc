@@ -1,6 +1,6 @@
 package Runner;
 
-option java_package = "com.hopped.runner.protobuf";
+option java_package = "com.hopped.running.protobuf";
 option java_outer_classname = "RunnerProtos";
 option optimize_for = LITE_RUNTIME;
 
@@ -13,9 +13,15 @@ message ProtoMap {
     repeated Pair item = 1;
 }
 
+message Error {
+    optional int32 errorCode = 1;
+    optional string errorMessage = 2;
+}
+
 message RunObject {
     optional string alias = 1;
     optional int32 objectId = 2;
+    optional Error error = 3;
 }
 
 message User {
@@ -43,6 +49,7 @@ message User {
     optional double timezone = 22;
     optional RunObject userRole = 23;
     optional int32 weight = 24;
+    optional Error error = 25;
 }
 
 message TrackPoint {
@@ -51,10 +58,12 @@ message TrackPoint {
     optional int32 heartRateBpm = 3;
     optional ProtoMap position = 4;
     optional int32 time = 5;
+    optional Error error = 6;
 }
 
 message Track {
     repeated TrackPoint tpObject = 1;
+    optional Error error = 2;
 }
 
 message Run {
@@ -76,10 +85,12 @@ message Run {
     repeated string tagList = 16;
     optional int32 totalTimeSeconds = 17;
     optional Track trackObject = 18;
+    optional Error error = 19;
 }
 
 message RunList {
     repeated Run runs = 1;
+    optional Error error = 2;
 }
 
 message AuthRequest {
@@ -87,13 +98,15 @@ message AuthRequest {
     optional string password = 2;
 }
 
-message AuthResult {
-    optional string securityToken = 1;
+message AuthResponse {
+    optional string sessionId = 1;
     optional User user = 2;
+    optional int32 sessionTimeout = 3;
+    optional Error error = 4;
 }
 
 message RunRequest {
-    optional string securityToken = 1;
+    optional string sessionId = 1;
     repeated int32 runId = 2;
     optional string localeId = 3;
     optional string distance = 4;
