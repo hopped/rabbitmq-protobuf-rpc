@@ -22,9 +22,12 @@
  */
 package com.hopped.running.rabbitmq;
 
+import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import com.hopped.running.database.RunnerSession;
 import com.hopped.running.database.UserDatabase;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
@@ -35,7 +38,9 @@ import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
+import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.QueueingConsumer;
+import com.rabbitmq.client.ShutdownSignalException;
 
 /**
  * @author Dennis Hoppe <hoppe.dennis@ymail.com>
@@ -43,62 +48,123 @@ import com.rabbitmq.client.QueueingConsumer;
 public class RunnerServer {
 
     public static final String RPC_QUEUE_NAME = "runningRabbit";
+
     final static Logger logger =
-        LoggerFactory.getLogger(RunnerServer.class);
+            LoggerFactory.getLogger(RunnerServer.class);
 
-    public static void main(String[] args) throws Exception {
-        final UserDatabase userDatabase = new UserDatabase();
-        final RunnerSession session = new RunnerSession();
+    private final UserDatabase userDatabase = new UserDatabase();
+    private final RunnerSession session = new RunnerSession();
 
+    private Connection connection;
+    private Channel channel;
+    private QueueingConsumer consumer;
+
+    /**
+     * 
+     * @return
+     * @throws IOException
+     */
+    public RunnerServer init() throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
+        connection = factory.newConnection();
+        channel = connection.createChannel();
         channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null);
         channel.basicQos(1);
 
-        QueueingConsumer consumer = new QueueingConsumer(channel);
+        consumer = new QueueingConsumer(channel);
         channel.basicConsume(RPC_QUEUE_NAME, false, consumer);
 
         logger.info(" [x] Handling RPC requests ...");
 
+        return this;
+    }
+
+    /**
+     * 
+     */
+    public void closeConnection() {
+        if (connection != null) {
+            try {
+                connection.close();
+            } catch (Exception e) {
+                // ignore
+            }
+        }
+    }
+
+    /**
+     * 
+     */
+    public void consume() {
         while (true) {
-            QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+            try {
+                QueueingConsumer.Delivery delivery = consumer.nextDelivery();
+                BasicProperties props = delivery.getProperties();
+                BasicProperties replyProps = new BasicProperties.Builder()
+                        .correlationId(props.getCorrelationId())
+                        .build();
 
-            BasicProperties props = delivery.getProperties();
-            BasicProperties replyProps = new BasicProperties.Builder()
-                .correlationId(props.getCorrelationId())
-                .build();
+                channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
 
-            logger.info(" [1] parse incoming request ...");
+                byte[] payload = getResponse(delivery);
+                channel.basicPublish("", props.getReplyTo(), replyProps,
+                        payload);
+            } catch (ShutdownSignalException | ConsumerCancelledException
+                    | InterruptedException | IOException e) {
+                logger.error(e.getMessage());
+            }
 
-            AuthRequest request = AuthRequest.parseFrom(delivery.getBody());
+        }
+    }
 
-            logger.info(" [2] build response ...");
+    /**
+     * 
+     * @param delivery
+     * @return
+     * @throws InvalidProtocolBufferException
+     */
+    public byte[] getResponse(QueueingConsumer.Delivery delivery)
+            throws InvalidProtocolBufferException {
+        logger.info(" [1] parse incoming request ...");
+        AuthRequest request = AuthRequest.parseFrom(delivery.getBody());
 
-            AuthResponse.Builder response = AuthResponse.newBuilder();
+        logger.info(" [2] build response ...");
 
-            User user = userDatabase.getUser(
+        AuthResponse.Builder response = AuthResponse.newBuilder();
+
+        User user = userDatabase.getUser(
                 request.getUsername(),
                 request.getPassword());
-            Error error = user.getError();
-            if (error.getErrorCode() > 0) {
-                response.setError(error);
-            } else {
-                response.setSessionId("s123");
-                response.setUser(user);
-                response.setSessionTimeout(30*60); // 30 minutes
-                session.addSession(user, 30*60);
+        Error error = user.getError();
+        if (error.getErrorCode() > 0) {
+            response.setError(error);
+        } else {
+            response.setSessionId("s123");
+            response.setUser(user);
+            response.setSessionTimeout(30 * 60); // 30 minutes
+            session.addSession(user, 30 * 60);
+        }
+        AuthResponse result = response.build();
+
+        return result.toByteArray();
+    }
+
+    /**
+     * 
+     * @param args
+     */
+    public static void main(String[] args) {
+        RunnerServer server = new RunnerServer();
+        try {
+            server.init().consume();
+        } catch (IOException e) {
+            logger.error(e.getMessage());
+        } finally {
+            if (server != null) {
+                server.closeConnection();
             }
-            AuthResponse result = response.build();
-
-            byte[] payload = result.toByteArray();
-
-            logger.info(" [>] send outgoing response ...");
-
-            channel.basicPublish("", props.getReplyTo(), replyProps, payload);
-            channel.basicAck(delivery.getEnvelope().getDeliveryTag(), false);
         }
     }
 }
