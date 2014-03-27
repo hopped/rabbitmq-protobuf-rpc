@@ -59,14 +59,14 @@ public class Demo {
         }
 
         AuthRequest authRequest = AuthRequest.newBuilder()
-            .setUsername("hoppe")
+            .setUsername("hopped")
             .setPassword("is_fantastic")
             .build();
         logger.info("Logging in 'hoppe' ...");
 
         AuthResponse response = client.getResponse(authRequest);
         Error error = response.getError();
-        if (error != null) {
+        if (error.getErrorCode() > 0) {
             logger.error(error.getErrorMessage());
         } else {
             User user = response.getUser();
@@ -78,6 +78,7 @@ public class Demo {
 
 
 
+        client.close();
         logger.info("Done.");
     }
 }

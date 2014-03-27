@@ -83,9 +83,8 @@ public class RunnerServer {
                 request.getUsername(),
                 request.getPassword());
             Error error = user.getError();
-            if (error != null) {
+            if (error.getErrorCode() > 0) {
                 response.setError(error);
-                //user.setCountLoginFailure((int) user.getCountLoginFailure() + 1);
             } else {
                 response.setSessionId("s123");
                 response.setUser(user);
