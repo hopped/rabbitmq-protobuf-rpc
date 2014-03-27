@@ -64,7 +64,7 @@ public class Demo {
             .build();
         logger.info("Logging in 'hoppe' ...");
 
-        AuthResponse response = client.getResponse(authRequest);
+        AuthResponse response = client.login(authRequest);
         Error error = response.getError();
         if (error.getErrorCode() > 0) {
             logger.error(error.getErrorMessage());

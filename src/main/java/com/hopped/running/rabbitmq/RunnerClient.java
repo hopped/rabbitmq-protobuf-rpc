@@ -88,7 +88,7 @@ public class RunnerClient {
     /**
      * @throws Exception
      */
-    public AuthResponse getResponse(AuthRequest query) throws Exception {
+    public AuthResponse login(AuthRequest query) throws Exception {
         AuthResponse response = null;
 
         String corrId = java.util.UUID.randomUUID().toString();
