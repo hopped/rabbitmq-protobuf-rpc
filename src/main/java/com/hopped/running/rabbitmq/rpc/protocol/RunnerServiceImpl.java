@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.hopped.running.rabbitmq.rpc;
+package com.hopped.running.rabbitmq.rpc.protocol;
 
 import com.hopped.running.protobuf.RunnerProtos.Ack;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;

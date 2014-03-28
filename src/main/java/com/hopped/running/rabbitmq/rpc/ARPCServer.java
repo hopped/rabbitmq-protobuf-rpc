@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.hopped.running.rabbitmq;
+package com.hopped.running.rabbitmq.rpc;
 
 import java.io.IOException;
 
@@ -38,17 +38,17 @@ import com.rabbitmq.client.ShutdownSignalException;
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
  * 
  */
-public abstract class ARunnerRPCServer {
+public abstract class ARPCServer<T extends ARPCServer<T>> {
 
-    final static Logger logger = LoggerFactory
-            .getLogger(ARunnerRPCServer.class);
+    private final static Logger logger = LoggerFactory
+            .getLogger(ARPCServer.class);
 
-    private final String queueName;
     private final Channel channel;
-    protected Class<?> protocol;
-    protected Object instance;
-
+    private String queueName;
     private QueueingConsumer consumer;
+
+    protected Object instance;
+    protected Class<?> protocol;
 
     /**
      * 
@@ -56,11 +56,9 @@ public abstract class ARunnerRPCServer {
      * @param queueName
      * @throws IOException
      */
-    public ARunnerRPCServer(final Channel channel, final String queueName)
-            throws IOException {
+    public ARPCServer(final Channel channel, final String queueName) {
         this.channel = channel;
-        this.queueName = (queueName == null || queueName.isEmpty()) ?
-                channel.queueDeclare().getQueue() : queueName;
+        this.queueName = queueName;
     }
 
     /**
@@ -68,34 +66,21 @@ public abstract class ARunnerRPCServer {
      * @return
      * @throws IOException
      */
-    public ARunnerRPCServer init() throws IOException {
+    public T init() throws IOException {
         consumer = new QueueingConsumer(channel);
         channel.basicConsume(queueName, false, consumer);
-
-        return this;
-    }
-
-    public ARunnerRPCServer setProtocol(Class<?> protocol) {
-        this.protocol = protocol;
-        return this;
-    }
-
-    public ARunnerRPCServer setInstance(Object instance) {
-        this.instance = instance;
-        return this;
+        queueName = (queueName == null || queueName.isEmpty()) ?
+                channel.queueDeclare().getQueue() : queueName;
+        return self();
     }
 
     /**
      * 
      */
-    public void closeConnection() {
-        if (consumer != null) {
-            try {
-                channel.basicCancel(consumer.getConsumerTag());
-                consumer = null;
-            } catch (Exception e) {
-                // ignore
-            }
+    private void checkConsumer() {
+        if (consumer == null) {
+            throw new IllegalStateException(
+                    "Consumer is not initialized; call init() first, please.");
         }
     }
 
@@ -103,9 +88,10 @@ public abstract class ARunnerRPCServer {
      * 
      */
     public void consume() {
+        checkConsumer();
+
         while (true) {
             try {
-                logger.info("ARunnerRPCServer::consume");
                 Delivery delivery = consumer.nextDelivery();
                 BasicProperties props = delivery.getProperties();
                 BasicProperties replyProps = new BasicProperties.Builder()
@@ -121,7 +107,8 @@ public abstract class ARunnerRPCServer {
 
             } catch (ShutdownSignalException | ConsumerCancelledException
                     | InterruptedException | IOException e) {
-                // handle error
+                logger.error(e.getMessage());
+                closeConnection();
             }
         }
     }
@@ -132,5 +119,69 @@ public abstract class ARunnerRPCServer {
      * @return
      */
     public abstract byte[] processRequest(Delivery delivery);
+
+    /**
+     * 
+     * @return
+     */
+    public abstract T self();
+
+    /**
+     * 
+     */
+    public void closeConnection() {
+        checkConsumer();
+        try {
+            channel.basicCancel(consumer.getConsumerTag());
+            consumer = null;
+        } catch (IOException e) {
+            logger.warn(e.getMessage());
+            // ignore exception
+        }
+    }
+
+    /**
+     * 
+     * @param protocol
+     * @return
+     */
+    public T setProtocol(Class<?> protocol) {
+        this.protocol = protocol;
+        return self();
+    }
+
+    /**
+     * 
+     * @param instance
+     * @return
+     */
+    public T setInstance(Object instance) {
+        this.instance = instance;
+        return self();
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public final String getQueueName() {
+        return queueName;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public final Class<?> getProtocol() {
+        return protocol;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public final Object getInstance() {
+        return instance;
+    }
 
 }

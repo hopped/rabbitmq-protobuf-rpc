@@ -20,24 +20,25 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.hopped.running.rabbitmq.rpc;
+package com.hopped.running.rabbitmq.rpc.protocol;
 
-import com.hopped.running.protobuf.RunnerProtos.Ack;
-import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
-import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
-import com.hopped.running.protobuf.RunnerProtos.User;
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
+ * 
  */
-public interface IRunnerService {
+@Documented
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@interface ProtocolAnnotation {
 
-    public AuthResponse login(AuthRequest request);
+    double protocolVersion();
 
-    public Ack setProfile(User user);
-
-    // public void addRun(User user, Run run);
-
-    // public void getRuns(User user, Map<String, String> attributes);
+    String serializationBy();
 
 }

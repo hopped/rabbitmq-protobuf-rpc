@@ -14705,6 +14705,602 @@ public final class RunnerProtos {
     // @@protoc_insertion_point(class_scope:Runner.RPC)
   }
 
+  public interface AckOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required bool success = 1;
+    /**
+     * <code>required bool success = 1;</code>
+     */
+    boolean hasSuccess();
+    /**
+     * <code>required bool success = 1;</code>
+     */
+    boolean getSuccess();
+
+    // optional .Runner.Error error = 2;
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    boolean hasError();
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
+  }
+  /**
+   * Protobuf type {@code Runner.Ack}
+   */
+  public static final class Ack extends
+      com.google.protobuf.GeneratedMessage
+      implements AckOrBuilder {
+    // Use Ack.newBuilder() to construct.
+    private Ack(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Ack(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Ack defaultInstance;
+    public static Ack getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Ack getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Ack(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 8: {
+              bitField0_ |= 0x00000001;
+              success_ = input.readBool();
+              break;
+            }
+            case 18: {
+              com.hopped.running.protobuf.RunnerProtos.Error.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000002) == 0x00000002)) {
+                subBuilder = error_.toBuilder();
+              }
+              error_ = input.readMessage(com.hopped.running.protobuf.RunnerProtos.Error.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(error_);
+                error_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000002;
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Ack_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Ack_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.Ack.class, com.hopped.running.protobuf.RunnerProtos.Ack.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Ack> PARSER =
+        new com.google.protobuf.AbstractParser<Ack>() {
+      public Ack parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Ack(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Ack> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required bool success = 1;
+    public static final int SUCCESS_FIELD_NUMBER = 1;
+    private boolean success_;
+    /**
+     * <code>required bool success = 1;</code>
+     */
+    public boolean hasSuccess() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required bool success = 1;</code>
+     */
+    public boolean getSuccess() {
+      return success_;
+    }
+
+    // optional .Runner.Error error = 2;
+    public static final int ERROR_FIELD_NUMBER = 2;
+    private com.hopped.running.protobuf.RunnerProtos.Error error_;
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    public boolean hasError() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+      return error_;
+    }
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+      return error_;
+    }
+
+    private void initFields() {
+      success_ = false;
+      error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasSuccess()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBool(1, success_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeMessage(2, error_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBoolSize(1, success_);
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(2, error_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.Ack parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.hopped.running.protobuf.RunnerProtos.Ack prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Runner.Ack}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.AckOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Ack_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Ack_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.Ack.class, com.hopped.running.protobuf.RunnerProtos.Ack.Builder.class);
+      }
+
+      // Construct using com.hopped.running.protobuf.RunnerProtos.Ack.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getErrorFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        success_ = false;
+        bitField0_ = (bitField0_ & ~0x00000001);
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Ack_descriptor;
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.Ack getDefaultInstanceForType() {
+        return com.hopped.running.protobuf.RunnerProtos.Ack.getDefaultInstance();
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.Ack build() {
+        com.hopped.running.protobuf.RunnerProtos.Ack result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.Ack buildPartial() {
+        com.hopped.running.protobuf.RunnerProtos.Ack result = new com.hopped.running.protobuf.RunnerProtos.Ack(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.success_ = success_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.Ack) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.Ack)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.Ack other) {
+        if (other == com.hopped.running.protobuf.RunnerProtos.Ack.getDefaultInstance()) return this;
+        if (other.hasSuccess()) {
+          setSuccess(other.getSuccess());
+        }
+        if (other.hasError()) {
+          mergeError(other.getError());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasSuccess()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hopped.running.protobuf.RunnerProtos.Ack parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hopped.running.protobuf.RunnerProtos.Ack) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required bool success = 1;
+      private boolean success_ ;
+      /**
+       * <code>required bool success = 1;</code>
+       */
+      public boolean hasSuccess() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required bool success = 1;</code>
+       */
+      public boolean getSuccess() {
+        return success_;
+      }
+      /**
+       * <code>required bool success = 1;</code>
+       */
+      public Builder setSuccess(boolean value) {
+        bitField0_ |= 0x00000001;
+        success_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required bool success = 1;</code>
+       */
+      public Builder clearSuccess() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        success_ = false;
+        onChanged();
+        return this;
+      }
+
+      // optional .Runner.Error error = 2;
+      private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public boolean hasError() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public Builder setError(
+          com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
+        } else {
+          errorBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000002;
+        return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public Builder clearError() {
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Runner.Ack)
+    }
+
+    static {
+      defaultInstance = new Ack(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:Runner.Ack)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Runner_Pair_descriptor;
   private static
@@ -14770,6 +15366,11 @@ public final class RunnerProtos {
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Runner_RPC_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_Ack_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_Ack_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -14824,8 +15425,10 @@ public final class RunnerProtos {
       "\0132\r.Runner.Error\"R\n\nRunRequest\022\021\n\tsessio" +
       "nId\030\001 \001(\t\022\r\n\005runId\030\002 \003(\005\022\020\n\010localeId\030\003 \001" +
       "(\t\022\020\n\010distance\030\004 \001(\t\"&\n\003RPC\022\016\n\006method\030\001 " +
-      "\002(\t\022\017\n\007payload\030\002 \002(\014B-\n\033com.hopped.runni" +
-      "ng.protobufB\014RunnerProtosH\001"
+      "\002(\t\022\017\n\007payload\030\002 \002(\014\"4\n\003Ack\022\017\n\007success\030\001" +
+      " \002(\010\022\034\n\005error\030\002 \001(\0132\r.Runner.ErrorB-\n\033co" +
+      "m.hopped.running.protobufB\014RunnerProtosH" +
+      "\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -14910,6 +15513,12 @@ public final class RunnerProtos {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Runner_RPC_descriptor,
               new java.lang.String[] { "Method", "Payload", });
+          internal_static_Runner_Ack_descriptor =
+            getDescriptor().getMessageTypes().get(13);
+          internal_static_Runner_Ack_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_Ack_descriptor,
+              new java.lang.String[] { "Success", "Error", });
           return null;
         }
       };

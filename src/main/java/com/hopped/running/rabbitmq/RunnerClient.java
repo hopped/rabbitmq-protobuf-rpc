@@ -47,7 +47,7 @@ import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
 import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
 import com.hopped.running.protobuf.RunnerProtos.RPC;
 import com.hopped.running.protobuf.RunnerProtos.User;
-import com.hopped.running.rabbitmq.rpc.IRunnerService;
+import com.hopped.running.rabbitmq.rpc.protocol.IRunnerService;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
