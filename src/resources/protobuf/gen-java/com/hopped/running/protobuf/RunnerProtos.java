@@ -6,10 +6,10 @@ package com.hopped.running.protobuf;
 public final class RunnerProtos {
   private RunnerProtos() {}
   public static void registerAllExtensions(
-      com.google.protobuf.ExtensionRegistryLite registry) {
+      com.google.protobuf.ExtensionRegistry registry) {
   }
   public interface PairOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string key = 1;
     /**
@@ -45,14 +45,14 @@ public final class RunnerProtos {
    * Protobuf type {@code Runner.Pair}
    */
   public static final class Pair extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements PairOrBuilder {
     // Use Pair.newBuilder() to construct.
-    private Pair(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private Pair(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Pair(boolean noInit) {}
+    private Pair(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final Pair defaultInstance;
     public static Pair getDefaultInstance() {
@@ -63,12 +63,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private Pair(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -78,7 +86,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -102,9 +110,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Pair_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Pair_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.Pair.class, com.hopped.running.protobuf.RunnerProtos.Pair.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<Pair> PARSER =
         new com.google.protobuf.AbstractParser<Pair>() {
       public Pair parsePartialFrom(
@@ -229,6 +250,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getValueBytes());
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -245,6 +267,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getValueBytes());
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -316,19 +339,43 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.Pair}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.Pair, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.PairOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.PairOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Pair_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Pair_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.Pair.class, com.hopped.running.protobuf.RunnerProtos.Pair.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.Pair.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -345,6 +392,11 @@ public final class RunnerProtos {
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Pair_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.Pair getDefaultInstanceForType() {
@@ -372,7 +424,17 @@ public final class RunnerProtos {
         }
         result.value_ = value_;
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.Pair) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.Pair)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.Pair other) {
@@ -380,13 +442,14 @@ public final class RunnerProtos {
         if (other.hasKey()) {
           bitField0_ |= 0x00000001;
           key_ = other.key_;
-          
+          onChanged();
         }
         if (other.hasValue()) {
           bitField0_ |= 0x00000002;
           value_ = other.value_;
-          
+          onChanged();
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -461,7 +524,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         key_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -470,7 +533,7 @@ public final class RunnerProtos {
       public Builder clearKey() {
         bitField0_ = (bitField0_ & ~0x00000001);
         key_ = getDefaultInstance().getKey();
-        
+        onChanged();
         return this;
       }
       /**
@@ -483,7 +546,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         key_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -535,7 +598,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         value_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -544,7 +607,7 @@ public final class RunnerProtos {
       public Builder clearValue() {
         bitField0_ = (bitField0_ & ~0x00000002);
         value_ = getDefaultInstance().getValue();
-        
+        onChanged();
         return this;
       }
       /**
@@ -557,7 +620,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         value_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -573,7 +636,7 @@ public final class RunnerProtos {
   }
 
   public interface ProtoMapOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // repeated .Runner.Pair item = 1;
     /**
@@ -589,19 +652,29 @@ public final class RunnerProtos {
      * <code>repeated .Runner.Pair item = 1;</code>
      */
     int getItemCount();
+    /**
+     * <code>repeated .Runner.Pair item = 1;</code>
+     */
+    java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.PairOrBuilder> 
+        getItemOrBuilderList();
+    /**
+     * <code>repeated .Runner.Pair item = 1;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.PairOrBuilder getItemOrBuilder(
+        int index);
   }
   /**
    * Protobuf type {@code Runner.ProtoMap}
    */
   public static final class ProtoMap extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements ProtoMapOrBuilder {
     // Use ProtoMap.newBuilder() to construct.
-    private ProtoMap(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private ProtoMap(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private ProtoMap(boolean noInit) {}
+    private ProtoMap(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final ProtoMap defaultInstance;
     public static ProtoMap getDefaultInstance() {
@@ -612,12 +685,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private ProtoMap(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -627,7 +708,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -652,9 +733,22 @@ public final class RunnerProtos {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           item_ = java.util.Collections.unmodifiableList(item_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_ProtoMap_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_ProtoMap_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap.class, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<ProtoMap> PARSER =
         new com.google.protobuf.AbstractParser<ProtoMap>() {
       public ProtoMap parsePartialFrom(
@@ -724,6 +818,7 @@ public final class RunnerProtos {
       for (int i = 0; i < item_.size(); i++) {
         output.writeMessage(1, item_.get(i));
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -736,6 +831,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(1, item_.get(i));
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -807,19 +903,44 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.ProtoMap}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.ProtoMap, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_ProtoMap_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_ProtoMap_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.ProtoMap.class, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getItemFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -827,13 +948,22 @@ public final class RunnerProtos {
 
       public Builder clear() {
         super.clear();
-        item_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
+        if (itemBuilder_ == null) {
+          item_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          itemBuilder_.clear();
+        }
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_ProtoMap_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap getDefaultInstanceForType() {
@@ -851,26 +981,57 @@ public final class RunnerProtos {
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap buildPartial() {
         com.hopped.running.protobuf.RunnerProtos.ProtoMap result = new com.hopped.running.protobuf.RunnerProtos.ProtoMap(this);
         int from_bitField0_ = bitField0_;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          item_ = java.util.Collections.unmodifiableList(item_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        if (itemBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            item_ = java.util.Collections.unmodifiableList(item_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.item_ = item_;
+        } else {
+          result.item_ = itemBuilder_.build();
         }
-        result.item_ = item_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.ProtoMap) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.ProtoMap)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.ProtoMap other) {
         if (other == com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) return this;
-        if (!other.item_.isEmpty()) {
-          if (item_.isEmpty()) {
-            item_ = other.item_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureItemIsMutable();
-            item_.addAll(other.item_);
+        if (itemBuilder_ == null) {
+          if (!other.item_.isEmpty()) {
+            if (item_.isEmpty()) {
+              item_ = other.item_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureItemIsMutable();
+              item_.addAll(other.item_);
+            }
+            onChanged();
           }
-          
+        } else {
+          if (!other.item_.isEmpty()) {
+            if (itemBuilder_.isEmpty()) {
+              itemBuilder_.dispose();
+              itemBuilder_ = null;
+              item_ = other.item_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              itemBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getItemFieldBuilder() : null;
+            } else {
+              itemBuilder_.addAllMessages(other.item_);
+            }
+          }
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -907,35 +1068,54 @@ public final class RunnerProtos {
          }
       }
 
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Pair, com.hopped.running.protobuf.RunnerProtos.Pair.Builder, com.hopped.running.protobuf.RunnerProtos.PairOrBuilder> itemBuilder_;
+
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public java.util.List<com.hopped.running.protobuf.RunnerProtos.Pair> getItemList() {
-        return java.util.Collections.unmodifiableList(item_);
+        if (itemBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(item_);
+        } else {
+          return itemBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public int getItemCount() {
-        return item_.size();
+        if (itemBuilder_ == null) {
+          return item_.size();
+        } else {
+          return itemBuilder_.getCount();
+        }
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Pair getItem(int index) {
-        return item_.get(index);
+        if (itemBuilder_ == null) {
+          return item_.get(index);
+        } else {
+          return itemBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public Builder setItem(
           int index, com.hopped.running.protobuf.RunnerProtos.Pair value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (itemBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemIsMutable();
+          item_.set(index, value);
+          onChanged();
+        } else {
+          itemBuilder_.setMessage(index, value);
         }
-        ensureItemIsMutable();
-        item_.set(index, value);
-
         return this;
       }
       /**
@@ -943,21 +1123,29 @@ public final class RunnerProtos {
        */
       public Builder setItem(
           int index, com.hopped.running.protobuf.RunnerProtos.Pair.Builder builderForValue) {
-        ensureItemIsMutable();
-        item_.set(index, builderForValue.build());
-
+        if (itemBuilder_ == null) {
+          ensureItemIsMutable();
+          item_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          itemBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public Builder addItem(com.hopped.running.protobuf.RunnerProtos.Pair value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (itemBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemIsMutable();
+          item_.add(value);
+          onChanged();
+        } else {
+          itemBuilder_.addMessage(value);
         }
-        ensureItemIsMutable();
-        item_.add(value);
-
         return this;
       }
       /**
@@ -965,12 +1153,16 @@ public final class RunnerProtos {
        */
       public Builder addItem(
           int index, com.hopped.running.protobuf.RunnerProtos.Pair value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (itemBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureItemIsMutable();
+          item_.add(index, value);
+          onChanged();
+        } else {
+          itemBuilder_.addMessage(index, value);
         }
-        ensureItemIsMutable();
-        item_.add(index, value);
-
         return this;
       }
       /**
@@ -978,9 +1170,13 @@ public final class RunnerProtos {
        */
       public Builder addItem(
           com.hopped.running.protobuf.RunnerProtos.Pair.Builder builderForValue) {
-        ensureItemIsMutable();
-        item_.add(builderForValue.build());
-
+        if (itemBuilder_ == null) {
+          ensureItemIsMutable();
+          item_.add(builderForValue.build());
+          onChanged();
+        } else {
+          itemBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -988,9 +1184,13 @@ public final class RunnerProtos {
        */
       public Builder addItem(
           int index, com.hopped.running.protobuf.RunnerProtos.Pair.Builder builderForValue) {
-        ensureItemIsMutable();
-        item_.add(index, builderForValue.build());
-
+        if (itemBuilder_ == null) {
+          ensureItemIsMutable();
+          item_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          itemBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -998,28 +1198,104 @@ public final class RunnerProtos {
        */
       public Builder addAllItem(
           java.lang.Iterable<? extends com.hopped.running.protobuf.RunnerProtos.Pair> values) {
-        ensureItemIsMutable();
-        super.addAll(values, item_);
-
+        if (itemBuilder_ == null) {
+          ensureItemIsMutable();
+          super.addAll(values, item_);
+          onChanged();
+        } else {
+          itemBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public Builder clearItem() {
-        item_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-
+        if (itemBuilder_ == null) {
+          item_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          itemBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Pair item = 1;</code>
        */
       public Builder removeItem(int index) {
-        ensureItemIsMutable();
-        item_.remove(index);
-
+        if (itemBuilder_ == null) {
+          ensureItemIsMutable();
+          item_.remove(index);
+          onChanged();
+        } else {
+          itemBuilder_.remove(index);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Pair.Builder getItemBuilder(
+          int index) {
+        return getItemFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.PairOrBuilder getItemOrBuilder(
+          int index) {
+        if (itemBuilder_ == null) {
+          return item_.get(index);  } else {
+          return itemBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.PairOrBuilder> 
+           getItemOrBuilderList() {
+        if (itemBuilder_ != null) {
+          return itemBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(item_);
+        }
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Pair.Builder addItemBuilder() {
+        return getItemFieldBuilder().addBuilder(
+            com.hopped.running.protobuf.RunnerProtos.Pair.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Pair.Builder addItemBuilder(
+          int index) {
+        return getItemFieldBuilder().addBuilder(
+            index, com.hopped.running.protobuf.RunnerProtos.Pair.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.Pair item = 1;</code>
+       */
+      public java.util.List<com.hopped.running.protobuf.RunnerProtos.Pair.Builder> 
+           getItemBuilderList() {
+        return getItemFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Pair, com.hopped.running.protobuf.RunnerProtos.Pair.Builder, com.hopped.running.protobuf.RunnerProtos.PairOrBuilder> 
+          getItemFieldBuilder() {
+        if (itemBuilder_ == null) {
+          itemBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Pair, com.hopped.running.protobuf.RunnerProtos.Pair.Builder, com.hopped.running.protobuf.RunnerProtos.PairOrBuilder>(
+                  item_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          item_ = null;
+        }
+        return itemBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.ProtoMap)
@@ -1034,7 +1310,7 @@ public final class RunnerProtos {
   }
 
   public interface ErrorOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional int32 errorCode = 1;
     /**
@@ -1065,14 +1341,14 @@ public final class RunnerProtos {
    * Protobuf type {@code Runner.Error}
    */
   public static final class Error extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements ErrorOrBuilder {
     // Use Error.newBuilder() to construct.
-    private Error(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private Error(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Error(boolean noInit) {}
+    private Error(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final Error defaultInstance;
     public static Error getDefaultInstance() {
@@ -1083,12 +1359,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private Error(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1098,7 +1382,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -1122,9 +1406,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Error_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Error_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.Error.class, com.hopped.running.protobuf.RunnerProtos.Error.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<Error> PARSER =
         new com.google.protobuf.AbstractParser<Error>() {
       public Error parsePartialFrom(
@@ -1222,6 +1519,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getErrorMessageBytes());
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -1238,6 +1536,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getErrorMessageBytes());
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -1309,19 +1608,43 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.Error}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.Error, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Error_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Error_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.Error.class, com.hopped.running.protobuf.RunnerProtos.Error.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.Error.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -1338,6 +1661,11 @@ public final class RunnerProtos {
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Error_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.Error getDefaultInstanceForType() {
@@ -1365,7 +1693,17 @@ public final class RunnerProtos {
         }
         result.errorMessage_ = errorMessage_;
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.Error) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.Error)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.Error other) {
@@ -1376,8 +1714,9 @@ public final class RunnerProtos {
         if (other.hasErrorMessage()) {
           bitField0_ |= 0x00000002;
           errorMessage_ = other.errorMessage_;
-          
+          onChanged();
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -1424,7 +1763,7 @@ public final class RunnerProtos {
       public Builder setErrorCode(int value) {
         bitField0_ |= 0x00000001;
         errorCode_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -1433,7 +1772,7 @@ public final class RunnerProtos {
       public Builder clearErrorCode() {
         bitField0_ = (bitField0_ & ~0x00000001);
         errorCode_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -1485,7 +1824,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         errorMessage_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -1494,7 +1833,7 @@ public final class RunnerProtos {
       public Builder clearErrorMessage() {
         bitField0_ = (bitField0_ & ~0x00000002);
         errorMessage_ = getDefaultInstance().getErrorMessage();
-        
+        onChanged();
         return this;
       }
       /**
@@ -1507,7 +1846,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         errorMessage_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -1523,7 +1862,7 @@ public final class RunnerProtos {
   }
 
   public interface RunObjectOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string alias = 1;
     /**
@@ -1559,19 +1898,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 3;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 3;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.RunObject}
    */
   public static final class RunObject extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements RunObjectOrBuilder {
     // Use RunObject.newBuilder() to construct.
-    private RunObject(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private RunObject(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private RunObject(boolean noInit) {}
+    private RunObject(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final RunObject defaultInstance;
     public static RunObject getDefaultInstance() {
@@ -1582,12 +1925,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private RunObject(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -1597,7 +1948,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -1634,9 +1985,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunObject_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunObject_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.RunObject.class, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<RunObject> PARSER =
         new com.google.protobuf.AbstractParser<RunObject>() {
       public RunObject parsePartialFrom(
@@ -1727,6 +2091,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
       return error_;
     }
+    /**
+     * <code>optional .Runner.Error error = 3;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+      return error_;
+    }
 
     private void initFields() {
       alias_ = "";
@@ -1754,6 +2124,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeMessage(3, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -1774,6 +2145,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(3, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -1845,19 +2217,44 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.RunObject}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.RunObject, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunObject_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunObject_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.RunObject.class, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.RunObject.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -1869,13 +2266,22 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         objectId_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunObject_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.RunObject getDefaultInstanceForType() {
@@ -1905,9 +2311,23 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.RunObject) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.RunObject)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.RunObject other) {
@@ -1915,7 +2335,7 @@ public final class RunnerProtos {
         if (other.hasAlias()) {
           bitField0_ |= 0x00000001;
           alias_ = other.alias_;
-          
+          onChanged();
         }
         if (other.hasObjectId()) {
           setObjectId(other.getObjectId());
@@ -1923,6 +2343,7 @@ public final class RunnerProtos {
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -1997,7 +2418,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -2006,7 +2427,7 @@ public final class RunnerProtos {
       public Builder clearAlias() {
         bitField0_ = (bitField0_ & ~0x00000001);
         alias_ = getDefaultInstance().getAlias();
-        
+        onChanged();
         return this;
       }
       /**
@@ -2019,7 +2440,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -2043,7 +2464,7 @@ public final class RunnerProtos {
       public Builder setObjectId(int value) {
         bitField0_ |= 0x00000002;
         objectId_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -2052,12 +2473,14 @@ public final class RunnerProtos {
       public Builder clearObjectId() {
         bitField0_ = (bitField0_ & ~0x00000002);
         objectId_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.Error error = 3;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 3;</code>
        */
@@ -2068,17 +2491,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 3;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 3;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -2087,8 +2518,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -2096,14 +2531,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 3;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00000004) == 0x00000004) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -2111,10 +2550,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 3;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 3;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 3;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.RunObject)
@@ -2129,7 +2606,7 @@ public final class RunnerProtos {
   }
 
   public interface UserOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string alias = 1;
     /**
@@ -2365,6 +2842,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.ProtoMap getPrivacySettings();
+    /**
+     * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPrivacySettingsOrBuilder();
 
     // optional string publicPath = 20;
     /**
@@ -2410,6 +2891,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.RunObject userRole = 23;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.RunObject getUserRole();
+    /**
+     * <code>optional .Runner.RunObject userRole = 23;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getUserRoleOrBuilder();
 
     // optional int32 weight = 24;
     /**
@@ -2430,19 +2915,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 25;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 25;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.User}
    */
   public static final class User extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements UserOrBuilder {
     // Use User.newBuilder() to construct.
-    private User(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private User(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private User(boolean noInit) {}
+    private User(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final User defaultInstance;
     public static User getDefaultInstance() {
@@ -2453,12 +2942,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private User(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -2468,7 +2965,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -2631,9 +3128,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_User_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_User_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.User.class, com.hopped.running.protobuf.RunnerProtos.User.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<User> PARSER =
         new com.google.protobuf.AbstractParser<User>() {
       public User parsePartialFrom(
@@ -3196,6 +3706,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.ProtoMap getPrivacySettings() {
       return privacySettings_;
     }
+    /**
+     * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPrivacySettingsOrBuilder() {
+      return privacySettings_;
+    }
 
     // optional string publicPath = 20;
     public static final int PUBLICPATH_FIELD_NUMBER = 20;
@@ -3287,6 +3803,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.RunObject getUserRole() {
       return userRole_;
     }
+    /**
+     * <code>optional .Runner.RunObject userRole = 23;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getUserRoleOrBuilder() {
+      return userRole_;
+    }
 
     // optional int32 weight = 24;
     public static final int WEIGHT_FIELD_NUMBER = 24;
@@ -3317,6 +3839,12 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 25;</code>
      */
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+      return error_;
+    }
+    /**
+     * <code>optional .Runner.Error error = 25;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
       return error_;
     }
 
@@ -3434,6 +3962,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x01000000) == 0x01000000)) {
         output.writeMessage(25, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -3542,6 +4071,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(25, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -3613,19 +4143,46 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.User}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.User, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.UserOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.UserOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_User_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_User_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.User.class, com.hopped.running.protobuf.RunnerProtos.User.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.User.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getPrivacySettingsFieldBuilder();
+          getUserRoleFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -3669,7 +4226,11 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00010000);
         password_ = "";
         bitField0_ = (bitField0_ & ~0x00020000);
-        privacySettings_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        if (privacySettingsBuilder_ == null) {
+          privacySettings_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        } else {
+          privacySettingsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00040000);
         publicPath_ = "";
         bitField0_ = (bitField0_ & ~0x00080000);
@@ -3677,17 +4238,30 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00100000);
         timezone_ = 0D;
         bitField0_ = (bitField0_ & ~0x00200000);
-        userRole_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+        if (userRoleBuilder_ == null) {
+          userRole_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+        } else {
+          userRoleBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00400000);
         weight_ = 0;
         bitField0_ = (bitField0_ & ~0x00800000);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x01000000);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_User_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.User getDefaultInstanceForType() {
@@ -3781,7 +4355,11 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
           to_bitField0_ |= 0x00040000;
         }
-        result.privacySettings_ = privacySettings_;
+        if (privacySettingsBuilder_ == null) {
+          result.privacySettings_ = privacySettings_;
+        } else {
+          result.privacySettings_ = privacySettingsBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00080000) == 0x00080000)) {
           to_bitField0_ |= 0x00080000;
         }
@@ -3797,7 +4375,11 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00400000) == 0x00400000)) {
           to_bitField0_ |= 0x00400000;
         }
-        result.userRole_ = userRole_;
+        if (userRoleBuilder_ == null) {
+          result.userRole_ = userRole_;
+        } else {
+          result.userRole_ = userRoleBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00800000) == 0x00800000)) {
           to_bitField0_ |= 0x00800000;
         }
@@ -3805,9 +4387,23 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x01000000) == 0x01000000)) {
           to_bitField0_ |= 0x01000000;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.User) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.User)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.User other) {
@@ -3815,7 +4411,7 @@ public final class RunnerProtos {
         if (other.hasAlias()) {
           bitField0_ |= 0x00000001;
           alias_ = other.alias_;
-          
+          onChanged();
         }
         if (other.hasId()) {
           setId(other.getId());
@@ -3832,22 +4428,22 @@ public final class RunnerProtos {
         if (other.hasDistance()) {
           bitField0_ |= 0x00000020;
           distance_ = other.distance_;
-          
+          onChanged();
         }
         if (other.hasEMail()) {
           bitField0_ |= 0x00000040;
           eMail_ = other.eMail_;
-          
+          onChanged();
         }
         if (other.hasFirstName()) {
           bitField0_ |= 0x00000080;
           firstName_ = other.firstName_;
-          
+          onChanged();
         }
         if (other.hasGender()) {
           bitField0_ |= 0x00000100;
           gender_ = other.gender_;
-          
+          onChanged();
         }
         if (other.hasHeight()) {
           setHeight(other.getHeight());
@@ -3855,7 +4451,7 @@ public final class RunnerProtos {
         if (other.hasImage()) {
           bitField0_ |= 0x00000400;
           image_ = other.image_;
-          
+          onChanged();
         }
         if (other.hasIsEmailVerified()) {
           setIsEmailVerified(other.getIsEmailVerified());
@@ -3869,12 +4465,12 @@ public final class RunnerProtos {
         if (other.hasLastName()) {
           bitField0_ |= 0x00004000;
           lastName_ = other.lastName_;
-          
+          onChanged();
         }
         if (other.hasLocaleID()) {
           bitField0_ |= 0x00008000;
           localeID_ = other.localeID_;
-          
+          onChanged();
         }
         if (other.hasMaxHr()) {
           setMaxHr(other.getMaxHr());
@@ -3882,7 +4478,7 @@ public final class RunnerProtos {
         if (other.hasPassword()) {
           bitField0_ |= 0x00020000;
           password_ = other.password_;
-          
+          onChanged();
         }
         if (other.hasPrivacySettings()) {
           mergePrivacySettings(other.getPrivacySettings());
@@ -3890,7 +4486,7 @@ public final class RunnerProtos {
         if (other.hasPublicPath()) {
           bitField0_ |= 0x00080000;
           publicPath_ = other.publicPath_;
-          
+          onChanged();
         }
         if (other.hasRestingHr()) {
           setRestingHr(other.getRestingHr());
@@ -3907,6 +4503,7 @@ public final class RunnerProtos {
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -3981,7 +4578,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -3990,7 +4587,7 @@ public final class RunnerProtos {
       public Builder clearAlias() {
         bitField0_ = (bitField0_ & ~0x00000001);
         alias_ = getDefaultInstance().getAlias();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4003,7 +4600,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4027,7 +4624,7 @@ public final class RunnerProtos {
       public Builder setId(int value) {
         bitField0_ |= 0x00000002;
         id_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4036,7 +4633,7 @@ public final class RunnerProtos {
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000002);
         id_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4060,7 +4657,7 @@ public final class RunnerProtos {
       public Builder setBirthdate(int value) {
         bitField0_ |= 0x00000004;
         birthdate_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4069,7 +4666,7 @@ public final class RunnerProtos {
       public Builder clearBirthdate() {
         bitField0_ = (bitField0_ & ~0x00000004);
         birthdate_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4093,7 +4690,7 @@ public final class RunnerProtos {
       public Builder setCountLoginFailure(int value) {
         bitField0_ |= 0x00000008;
         countLoginFailure_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4102,7 +4699,7 @@ public final class RunnerProtos {
       public Builder clearCountLoginFailure() {
         bitField0_ = (bitField0_ & ~0x00000008);
         countLoginFailure_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4126,7 +4723,7 @@ public final class RunnerProtos {
       public Builder setCreationDate(int value) {
         bitField0_ |= 0x00000010;
         creationDate_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4135,7 +4732,7 @@ public final class RunnerProtos {
       public Builder clearCreationDate() {
         bitField0_ = (bitField0_ & ~0x00000010);
         creationDate_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4187,7 +4784,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000020;
         distance_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4196,7 +4793,7 @@ public final class RunnerProtos {
       public Builder clearDistance() {
         bitField0_ = (bitField0_ & ~0x00000020);
         distance_ = getDefaultInstance().getDistance();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4209,7 +4806,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000020;
         distance_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4261,7 +4858,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000040;
         eMail_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4270,7 +4867,7 @@ public final class RunnerProtos {
       public Builder clearEMail() {
         bitField0_ = (bitField0_ & ~0x00000040);
         eMail_ = getDefaultInstance().getEMail();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4283,7 +4880,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000040;
         eMail_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4335,7 +4932,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000080;
         firstName_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4344,7 +4941,7 @@ public final class RunnerProtos {
       public Builder clearFirstName() {
         bitField0_ = (bitField0_ & ~0x00000080);
         firstName_ = getDefaultInstance().getFirstName();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4357,7 +4954,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000080;
         firstName_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4409,7 +5006,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000100;
         gender_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4418,7 +5015,7 @@ public final class RunnerProtos {
       public Builder clearGender() {
         bitField0_ = (bitField0_ & ~0x00000100);
         gender_ = getDefaultInstance().getGender();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4431,7 +5028,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000100;
         gender_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4455,7 +5052,7 @@ public final class RunnerProtos {
       public Builder setHeight(int value) {
         bitField0_ |= 0x00000200;
         height_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4464,7 +5061,7 @@ public final class RunnerProtos {
       public Builder clearHeight() {
         bitField0_ = (bitField0_ & ~0x00000200);
         height_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4516,7 +5113,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000400;
         image_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4525,7 +5122,7 @@ public final class RunnerProtos {
       public Builder clearImage() {
         bitField0_ = (bitField0_ & ~0x00000400);
         image_ = getDefaultInstance().getImage();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4538,7 +5135,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000400;
         image_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4562,7 +5159,7 @@ public final class RunnerProtos {
       public Builder setIsEmailVerified(boolean value) {
         bitField0_ |= 0x00000800;
         isEmailVerified_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4571,7 +5168,7 @@ public final class RunnerProtos {
       public Builder clearIsEmailVerified() {
         bitField0_ = (bitField0_ & ~0x00000800);
         isEmailVerified_ = false;
-        
+        onChanged();
         return this;
       }
 
@@ -4595,7 +5192,7 @@ public final class RunnerProtos {
       public Builder setIsPublic(boolean value) {
         bitField0_ |= 0x00001000;
         isPublic_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4604,7 +5201,7 @@ public final class RunnerProtos {
       public Builder clearIsPublic() {
         bitField0_ = (bitField0_ & ~0x00001000);
         isPublic_ = false;
-        
+        onChanged();
         return this;
       }
 
@@ -4628,7 +5225,7 @@ public final class RunnerProtos {
       public Builder setLanguageId(int value) {
         bitField0_ |= 0x00002000;
         languageId_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4637,7 +5234,7 @@ public final class RunnerProtos {
       public Builder clearLanguageId() {
         bitField0_ = (bitField0_ & ~0x00002000);
         languageId_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4689,7 +5286,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00004000;
         lastName_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4698,7 +5295,7 @@ public final class RunnerProtos {
       public Builder clearLastName() {
         bitField0_ = (bitField0_ & ~0x00004000);
         lastName_ = getDefaultInstance().getLastName();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4711,7 +5308,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00004000;
         lastName_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4763,7 +5360,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00008000;
         localeID_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4772,7 +5369,7 @@ public final class RunnerProtos {
       public Builder clearLocaleID() {
         bitField0_ = (bitField0_ & ~0x00008000);
         localeID_ = getDefaultInstance().getLocaleID();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4785,7 +5382,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00008000;
         localeID_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -4809,7 +5406,7 @@ public final class RunnerProtos {
       public Builder setMaxHr(int value) {
         bitField0_ |= 0x00010000;
         maxHr_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4818,7 +5415,7 @@ public final class RunnerProtos {
       public Builder clearMaxHr() {
         bitField0_ = (bitField0_ & ~0x00010000);
         maxHr_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -4870,7 +5467,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00020000;
         password_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -4879,7 +5476,7 @@ public final class RunnerProtos {
       public Builder clearPassword() {
         bitField0_ = (bitField0_ & ~0x00020000);
         password_ = getDefaultInstance().getPassword();
-        
+        onChanged();
         return this;
       }
       /**
@@ -4892,12 +5489,14 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00020000;
         password_ = value;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.ProtoMap privacySettings = 19;
       private com.hopped.running.protobuf.RunnerProtos.ProtoMap privacySettings_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> privacySettingsBuilder_;
       /**
        * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
        */
@@ -4908,17 +5507,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap getPrivacySettings() {
-        return privacySettings_;
+        if (privacySettingsBuilder_ == null) {
+          return privacySettings_;
+        } else {
+          return privacySettingsBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
        */
       public Builder setPrivacySettings(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (privacySettingsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          privacySettings_ = value;
+          onChanged();
+        } else {
+          privacySettingsBuilder_.setMessage(value);
         }
-        privacySettings_ = value;
-
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -4927,8 +5534,12 @@ public final class RunnerProtos {
        */
       public Builder setPrivacySettings(
           com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder builderForValue) {
-        privacySettings_ = builderForValue.build();
-
+        if (privacySettingsBuilder_ == null) {
+          privacySettings_ = builderForValue.build();
+          onChanged();
+        } else {
+          privacySettingsBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -4936,14 +5547,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
        */
       public Builder mergePrivacySettings(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (((bitField0_ & 0x00040000) == 0x00040000) &&
-            privacySettings_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
-          privacySettings_ =
-            com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(privacySettings_).mergeFrom(value).buildPartial();
+        if (privacySettingsBuilder_ == null) {
+          if (((bitField0_ & 0x00040000) == 0x00040000) &&
+              privacySettings_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
+            privacySettings_ =
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(privacySettings_).mergeFrom(value).buildPartial();
+          } else {
+            privacySettings_ = value;
+          }
+          onChanged();
         } else {
-          privacySettings_ = value;
+          privacySettingsBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -4951,10 +5566,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
        */
       public Builder clearPrivacySettings() {
-        privacySettings_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
-
+        if (privacySettingsBuilder_ == null) {
+          privacySettings_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+          onChanged();
+        } else {
+          privacySettingsBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00040000);
         return this;
+      }
+      /**
+       * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder getPrivacySettingsBuilder() {
+        bitField0_ |= 0x00040000;
+        onChanged();
+        return getPrivacySettingsFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPrivacySettingsOrBuilder() {
+        if (privacySettingsBuilder_ != null) {
+          return privacySettingsBuilder_.getMessageOrBuilder();
+        } else {
+          return privacySettings_;
+        }
+      }
+      /**
+       * <code>optional .Runner.ProtoMap privacySettings = 19;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> 
+          getPrivacySettingsFieldBuilder() {
+        if (privacySettingsBuilder_ == null) {
+          privacySettingsBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder>(
+                  privacySettings_,
+                  getParentForChildren(),
+                  isClean());
+          privacySettings_ = null;
+        }
+        return privacySettingsBuilder_;
       }
 
       // optional string publicPath = 20;
@@ -5005,7 +5658,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00080000;
         publicPath_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5014,7 +5667,7 @@ public final class RunnerProtos {
       public Builder clearPublicPath() {
         bitField0_ = (bitField0_ & ~0x00080000);
         publicPath_ = getDefaultInstance().getPublicPath();
-        
+        onChanged();
         return this;
       }
       /**
@@ -5027,7 +5680,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00080000;
         publicPath_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -5051,7 +5704,7 @@ public final class RunnerProtos {
       public Builder setRestingHr(int value) {
         bitField0_ |= 0x00100000;
         restingHr_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5060,7 +5713,7 @@ public final class RunnerProtos {
       public Builder clearRestingHr() {
         bitField0_ = (bitField0_ & ~0x00100000);
         restingHr_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -5084,7 +5737,7 @@ public final class RunnerProtos {
       public Builder setTimezone(double value) {
         bitField0_ |= 0x00200000;
         timezone_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5093,12 +5746,14 @@ public final class RunnerProtos {
       public Builder clearTimezone() {
         bitField0_ = (bitField0_ & ~0x00200000);
         timezone_ = 0D;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.RunObject userRole = 23;
       private com.hopped.running.protobuf.RunnerProtos.RunObject userRole_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder> userRoleBuilder_;
       /**
        * <code>optional .Runner.RunObject userRole = 23;</code>
        */
@@ -5109,17 +5764,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject userRole = 23;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.RunObject getUserRole() {
-        return userRole_;
+        if (userRoleBuilder_ == null) {
+          return userRole_;
+        } else {
+          return userRoleBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.RunObject userRole = 23;</code>
        */
       public Builder setUserRole(com.hopped.running.protobuf.RunnerProtos.RunObject value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (userRoleBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          userRole_ = value;
+          onChanged();
+        } else {
+          userRoleBuilder_.setMessage(value);
         }
-        userRole_ = value;
-
         bitField0_ |= 0x00400000;
         return this;
       }
@@ -5128,8 +5791,12 @@ public final class RunnerProtos {
        */
       public Builder setUserRole(
           com.hopped.running.protobuf.RunnerProtos.RunObject.Builder builderForValue) {
-        userRole_ = builderForValue.build();
-
+        if (userRoleBuilder_ == null) {
+          userRole_ = builderForValue.build();
+          onChanged();
+        } else {
+          userRoleBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00400000;
         return this;
       }
@@ -5137,14 +5804,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject userRole = 23;</code>
        */
       public Builder mergeUserRole(com.hopped.running.protobuf.RunnerProtos.RunObject value) {
-        if (((bitField0_ & 0x00400000) == 0x00400000) &&
-            userRole_ != com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance()) {
-          userRole_ =
-            com.hopped.running.protobuf.RunnerProtos.RunObject.newBuilder(userRole_).mergeFrom(value).buildPartial();
+        if (userRoleBuilder_ == null) {
+          if (((bitField0_ & 0x00400000) == 0x00400000) &&
+              userRole_ != com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance()) {
+            userRole_ =
+              com.hopped.running.protobuf.RunnerProtos.RunObject.newBuilder(userRole_).mergeFrom(value).buildPartial();
+          } else {
+            userRole_ = value;
+          }
+          onChanged();
         } else {
-          userRole_ = value;
+          userRoleBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00400000;
         return this;
       }
@@ -5152,10 +5823,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject userRole = 23;</code>
        */
       public Builder clearUserRole() {
-        userRole_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
-
+        if (userRoleBuilder_ == null) {
+          userRole_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+          onChanged();
+        } else {
+          userRoleBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00400000);
         return this;
+      }
+      /**
+       * <code>optional .Runner.RunObject userRole = 23;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.RunObject.Builder getUserRoleBuilder() {
+        bitField0_ |= 0x00400000;
+        onChanged();
+        return getUserRoleFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.RunObject userRole = 23;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getUserRoleOrBuilder() {
+        if (userRoleBuilder_ != null) {
+          return userRoleBuilder_.getMessageOrBuilder();
+        } else {
+          return userRole_;
+        }
+      }
+      /**
+       * <code>optional .Runner.RunObject userRole = 23;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder> 
+          getUserRoleFieldBuilder() {
+        if (userRoleBuilder_ == null) {
+          userRoleBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder>(
+                  userRole_,
+                  getParentForChildren(),
+                  isClean());
+          userRole_ = null;
+        }
+        return userRoleBuilder_;
       }
 
       // optional int32 weight = 24;
@@ -5178,7 +5887,7 @@ public final class RunnerProtos {
       public Builder setWeight(int value) {
         bitField0_ |= 0x00800000;
         weight_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5187,12 +5896,14 @@ public final class RunnerProtos {
       public Builder clearWeight() {
         bitField0_ = (bitField0_ & ~0x00800000);
         weight_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.Error error = 25;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 25;</code>
        */
@@ -5203,17 +5914,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 25;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 25;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x01000000;
         return this;
       }
@@ -5222,8 +5941,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x01000000;
         return this;
       }
@@ -5231,14 +5954,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 25;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x01000000) == 0x01000000) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x01000000) == 0x01000000) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x01000000;
         return this;
       }
@@ -5246,10 +5973,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 25;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x01000000);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 25;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x01000000;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 25;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 25;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.User)
@@ -5264,7 +6029,7 @@ public final class RunnerProtos {
   }
 
   public interface TrackPointOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional double altitudeMeters = 1;
     /**
@@ -5305,6 +6070,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.ProtoMap position = 4;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.ProtoMap getPosition();
+    /**
+     * <code>optional .Runner.ProtoMap position = 4;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPositionOrBuilder();
 
     // optional int32 time = 5;
     /**
@@ -5325,19 +6094,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 6;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 6;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.TrackPoint}
    */
   public static final class TrackPoint extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements TrackPointOrBuilder {
     // Use TrackPoint.newBuilder() to construct.
-    private TrackPoint(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private TrackPoint(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private TrackPoint(boolean noInit) {}
+    private TrackPoint(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final TrackPoint defaultInstance;
     public static TrackPoint getDefaultInstance() {
@@ -5348,12 +6121,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private TrackPoint(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -5363,7 +6144,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -5423,9 +6204,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_TrackPoint_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_TrackPoint_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.TrackPoint.class, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<TrackPoint> PARSER =
         new com.google.protobuf.AbstractParser<TrackPoint>() {
       public TrackPoint parsePartialFrom(
@@ -5505,6 +6299,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.ProtoMap getPosition() {
       return position_;
     }
+    /**
+     * <code>optional .Runner.ProtoMap position = 4;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPositionOrBuilder() {
+      return position_;
+    }
 
     // optional int32 time = 5;
     public static final int TIME_FIELD_NUMBER = 5;
@@ -5535,6 +6335,12 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 6;</code>
      */
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+      return error_;
+    }
+    /**
+     * <code>optional .Runner.Error error = 6;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
       return error_;
     }
 
@@ -5576,6 +6382,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         output.writeMessage(6, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -5608,6 +6415,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(6, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -5679,19 +6487,45 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.TrackPoint}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.TrackPoint, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_TrackPoint_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_TrackPoint_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.TrackPoint.class, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.TrackPoint.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getPositionFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -5705,17 +6539,30 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00000002);
         heartRateBpm_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        position_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        if (positionBuilder_ == null) {
+          position_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        } else {
+          positionBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000008);
         time_ = 0;
         bitField0_ = (bitField0_ & ~0x00000010);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_TrackPoint_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.TrackPoint getDefaultInstanceForType() {
@@ -5749,7 +6596,11 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.position_ = position_;
+        if (positionBuilder_ == null) {
+          result.position_ = position_;
+        } else {
+          result.position_ = positionBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
@@ -5757,9 +6608,23 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.TrackPoint) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.TrackPoint)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.TrackPoint other) {
@@ -5782,6 +6647,7 @@ public final class RunnerProtos {
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -5828,7 +6694,7 @@ public final class RunnerProtos {
       public Builder setAltitudeMeters(double value) {
         bitField0_ |= 0x00000001;
         altitudeMeters_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5837,7 +6703,7 @@ public final class RunnerProtos {
       public Builder clearAltitudeMeters() {
         bitField0_ = (bitField0_ & ~0x00000001);
         altitudeMeters_ = 0D;
-        
+        onChanged();
         return this;
       }
 
@@ -5861,7 +6727,7 @@ public final class RunnerProtos {
       public Builder setDistanceMeters(double value) {
         bitField0_ |= 0x00000002;
         distanceMeters_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5870,7 +6736,7 @@ public final class RunnerProtos {
       public Builder clearDistanceMeters() {
         bitField0_ = (bitField0_ & ~0x00000002);
         distanceMeters_ = 0D;
-        
+        onChanged();
         return this;
       }
 
@@ -5894,7 +6760,7 @@ public final class RunnerProtos {
       public Builder setHeartRateBpm(int value) {
         bitField0_ |= 0x00000004;
         heartRateBpm_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5903,12 +6769,14 @@ public final class RunnerProtos {
       public Builder clearHeartRateBpm() {
         bitField0_ = (bitField0_ & ~0x00000004);
         heartRateBpm_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.ProtoMap position = 4;
       private com.hopped.running.protobuf.RunnerProtos.ProtoMap position_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> positionBuilder_;
       /**
        * <code>optional .Runner.ProtoMap position = 4;</code>
        */
@@ -5919,17 +6787,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap position = 4;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap getPosition() {
-        return position_;
+        if (positionBuilder_ == null) {
+          return position_;
+        } else {
+          return positionBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.ProtoMap position = 4;</code>
        */
       public Builder setPosition(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (positionBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          position_ = value;
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(value);
         }
-        position_ = value;
-
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -5938,8 +6814,12 @@ public final class RunnerProtos {
        */
       public Builder setPosition(
           com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder builderForValue) {
-        position_ = builderForValue.build();
-
+        if (positionBuilder_ == null) {
+          position_ = builderForValue.build();
+          onChanged();
+        } else {
+          positionBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -5947,14 +6827,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap position = 4;</code>
        */
       public Builder mergePosition(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (((bitField0_ & 0x00000008) == 0x00000008) &&
-            position_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
-          position_ =
-            com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(position_).mergeFrom(value).buildPartial();
+        if (positionBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              position_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
+            position_ =
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(position_).mergeFrom(value).buildPartial();
+          } else {
+            position_ = value;
+          }
+          onChanged();
         } else {
-          position_ = value;
+          positionBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -5962,10 +6846,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap position = 4;</code>
        */
       public Builder clearPosition() {
-        position_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
-
+        if (positionBuilder_ == null) {
+          position_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+          onChanged();
+        } else {
+          positionBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
+      }
+      /**
+       * <code>optional .Runner.ProtoMap position = 4;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder getPositionBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getPositionFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.ProtoMap position = 4;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getPositionOrBuilder() {
+        if (positionBuilder_ != null) {
+          return positionBuilder_.getMessageOrBuilder();
+        } else {
+          return position_;
+        }
+      }
+      /**
+       * <code>optional .Runner.ProtoMap position = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> 
+          getPositionFieldBuilder() {
+        if (positionBuilder_ == null) {
+          positionBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder>(
+                  position_,
+                  getParentForChildren(),
+                  isClean());
+          position_ = null;
+        }
+        return positionBuilder_;
       }
 
       // optional int32 time = 5;
@@ -5988,7 +6910,7 @@ public final class RunnerProtos {
       public Builder setTime(int value) {
         bitField0_ |= 0x00000010;
         time_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -5997,12 +6919,14 @@ public final class RunnerProtos {
       public Builder clearTime() {
         bitField0_ = (bitField0_ & ~0x00000010);
         time_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.Error error = 6;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 6;</code>
        */
@@ -6013,17 +6937,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 6;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 6;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -6032,8 +6964,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -6041,14 +6977,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 6;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00000020) == 0x00000020) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -6056,10 +6996,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 6;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 6;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 6;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.TrackPoint)
@@ -6074,7 +7052,7 @@ public final class RunnerProtos {
   }
 
   public interface TrackOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // repeated .Runner.TrackPoint tpObject = 1;
     /**
@@ -6090,6 +7068,16 @@ public final class RunnerProtos {
      * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
      */
     int getTpObjectCount();
+    /**
+     * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+     */
+    java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder> 
+        getTpObjectOrBuilderList();
+    /**
+     * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder getTpObjectOrBuilder(
+        int index);
 
     // optional .Runner.Error error = 2;
     /**
@@ -6100,19 +7088,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 2;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.Track}
    */
   public static final class Track extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements TrackOrBuilder {
     // Use Track.newBuilder() to construct.
-    private Track(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private Track(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Track(boolean noInit) {}
+    private Track(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final Track defaultInstance;
     public static Track getDefaultInstance() {
@@ -6123,12 +7115,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private Track(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6138,7 +7138,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -6176,9 +7176,22 @@ public final class RunnerProtos {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           tpObject_ = java.util.Collections.unmodifiableList(tpObject_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Track_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Track_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.Track.class, com.hopped.running.protobuf.RunnerProtos.Track.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<Track> PARSER =
         new com.google.protobuf.AbstractParser<Track>() {
       public Track parsePartialFrom(
@@ -6246,6 +7259,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
       return error_;
     }
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+      return error_;
+    }
 
     private void initFields() {
       tpObject_ = java.util.Collections.emptyList();
@@ -6269,6 +7288,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(2, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -6285,6 +7305,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -6356,19 +7377,45 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.Track}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.Track, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Track_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Track_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.Track.class, com.hopped.running.protobuf.RunnerProtos.Track.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.Track.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getTpObjectFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -6376,15 +7423,28 @@ public final class RunnerProtos {
 
       public Builder clear() {
         super.clear();
-        tpObject_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (tpObjectBuilder_ == null) {
+          tpObject_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          tpObjectBuilder_.clear();
+        }
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Track_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.Track getDefaultInstanceForType() {
@@ -6403,34 +7463,69 @@ public final class RunnerProtos {
         com.hopped.running.protobuf.RunnerProtos.Track result = new com.hopped.running.protobuf.RunnerProtos.Track(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          tpObject_ = java.util.Collections.unmodifiableList(tpObject_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        if (tpObjectBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            tpObject_ = java.util.Collections.unmodifiableList(tpObject_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.tpObject_ = tpObject_;
+        } else {
+          result.tpObject_ = tpObjectBuilder_.build();
         }
-        result.tpObject_ = tpObject_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.Track) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.Track)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.Track other) {
         if (other == com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance()) return this;
-        if (!other.tpObject_.isEmpty()) {
-          if (tpObject_.isEmpty()) {
-            tpObject_ = other.tpObject_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureTpObjectIsMutable();
-            tpObject_.addAll(other.tpObject_);
+        if (tpObjectBuilder_ == null) {
+          if (!other.tpObject_.isEmpty()) {
+            if (tpObject_.isEmpty()) {
+              tpObject_ = other.tpObject_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureTpObjectIsMutable();
+              tpObject_.addAll(other.tpObject_);
+            }
+            onChanged();
           }
-          
+        } else {
+          if (!other.tpObject_.isEmpty()) {
+            if (tpObjectBuilder_.isEmpty()) {
+              tpObjectBuilder_.dispose();
+              tpObjectBuilder_ = null;
+              tpObject_ = other.tpObject_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              tpObjectBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getTpObjectFieldBuilder() : null;
+            } else {
+              tpObjectBuilder_.addAllMessages(other.tpObject_);
+            }
+          }
         }
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -6467,35 +7562,54 @@ public final class RunnerProtos {
          }
       }
 
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.TrackPoint, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder, com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder> tpObjectBuilder_;
+
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public java.util.List<com.hopped.running.protobuf.RunnerProtos.TrackPoint> getTpObjectList() {
-        return java.util.Collections.unmodifiableList(tpObject_);
+        if (tpObjectBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(tpObject_);
+        } else {
+          return tpObjectBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public int getTpObjectCount() {
-        return tpObject_.size();
+        if (tpObjectBuilder_ == null) {
+          return tpObject_.size();
+        } else {
+          return tpObjectBuilder_.getCount();
+        }
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.TrackPoint getTpObject(int index) {
-        return tpObject_.get(index);
+        if (tpObjectBuilder_ == null) {
+          return tpObject_.get(index);
+        } else {
+          return tpObjectBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public Builder setTpObject(
           int index, com.hopped.running.protobuf.RunnerProtos.TrackPoint value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (tpObjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTpObjectIsMutable();
+          tpObject_.set(index, value);
+          onChanged();
+        } else {
+          tpObjectBuilder_.setMessage(index, value);
         }
-        ensureTpObjectIsMutable();
-        tpObject_.set(index, value);
-
         return this;
       }
       /**
@@ -6503,21 +7617,29 @@ public final class RunnerProtos {
        */
       public Builder setTpObject(
           int index, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder builderForValue) {
-        ensureTpObjectIsMutable();
-        tpObject_.set(index, builderForValue.build());
-
+        if (tpObjectBuilder_ == null) {
+          ensureTpObjectIsMutable();
+          tpObject_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          tpObjectBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public Builder addTpObject(com.hopped.running.protobuf.RunnerProtos.TrackPoint value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (tpObjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTpObjectIsMutable();
+          tpObject_.add(value);
+          onChanged();
+        } else {
+          tpObjectBuilder_.addMessage(value);
         }
-        ensureTpObjectIsMutable();
-        tpObject_.add(value);
-
         return this;
       }
       /**
@@ -6525,12 +7647,16 @@ public final class RunnerProtos {
        */
       public Builder addTpObject(
           int index, com.hopped.running.protobuf.RunnerProtos.TrackPoint value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (tpObjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureTpObjectIsMutable();
+          tpObject_.add(index, value);
+          onChanged();
+        } else {
+          tpObjectBuilder_.addMessage(index, value);
         }
-        ensureTpObjectIsMutable();
-        tpObject_.add(index, value);
-
         return this;
       }
       /**
@@ -6538,9 +7664,13 @@ public final class RunnerProtos {
        */
       public Builder addTpObject(
           com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder builderForValue) {
-        ensureTpObjectIsMutable();
-        tpObject_.add(builderForValue.build());
-
+        if (tpObjectBuilder_ == null) {
+          ensureTpObjectIsMutable();
+          tpObject_.add(builderForValue.build());
+          onChanged();
+        } else {
+          tpObjectBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -6548,9 +7678,13 @@ public final class RunnerProtos {
        */
       public Builder addTpObject(
           int index, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder builderForValue) {
-        ensureTpObjectIsMutable();
-        tpObject_.add(index, builderForValue.build());
-
+        if (tpObjectBuilder_ == null) {
+          ensureTpObjectIsMutable();
+          tpObject_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          tpObjectBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -6558,32 +7692,110 @@ public final class RunnerProtos {
        */
       public Builder addAllTpObject(
           java.lang.Iterable<? extends com.hopped.running.protobuf.RunnerProtos.TrackPoint> values) {
-        ensureTpObjectIsMutable();
-        super.addAll(values, tpObject_);
-
+        if (tpObjectBuilder_ == null) {
+          ensureTpObjectIsMutable();
+          super.addAll(values, tpObject_);
+          onChanged();
+        } else {
+          tpObjectBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public Builder clearTpObject() {
-        tpObject_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-
+        if (tpObjectBuilder_ == null) {
+          tpObject_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          tpObjectBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
        */
       public Builder removeTpObject(int index) {
-        ensureTpObjectIsMutable();
-        tpObject_.remove(index);
-
+        if (tpObjectBuilder_ == null) {
+          ensureTpObjectIsMutable();
+          tpObject_.remove(index);
+          onChanged();
+        } else {
+          tpObjectBuilder_.remove(index);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder getTpObjectBuilder(
+          int index) {
+        return getTpObjectFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder getTpObjectOrBuilder(
+          int index) {
+        if (tpObjectBuilder_ == null) {
+          return tpObject_.get(index);  } else {
+          return tpObjectBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder> 
+           getTpObjectOrBuilderList() {
+        if (tpObjectBuilder_ != null) {
+          return tpObjectBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(tpObject_);
+        }
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder addTpObjectBuilder() {
+        return getTpObjectFieldBuilder().addBuilder(
+            com.hopped.running.protobuf.RunnerProtos.TrackPoint.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder addTpObjectBuilder(
+          int index) {
+        return getTpObjectFieldBuilder().addBuilder(
+            index, com.hopped.running.protobuf.RunnerProtos.TrackPoint.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.TrackPoint tpObject = 1;</code>
+       */
+      public java.util.List<com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder> 
+           getTpObjectBuilderList() {
+        return getTpObjectFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.TrackPoint, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder, com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder> 
+          getTpObjectFieldBuilder() {
+        if (tpObjectBuilder_ == null) {
+          tpObjectBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.TrackPoint, com.hopped.running.protobuf.RunnerProtos.TrackPoint.Builder, com.hopped.running.protobuf.RunnerProtos.TrackPointOrBuilder>(
+                  tpObject_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          tpObject_ = null;
+        }
+        return tpObjectBuilder_;
       }
 
       // optional .Runner.Error error = 2;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 2;</code>
        */
@@ -6594,17 +7806,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -6613,8 +7833,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -6622,14 +7846,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00000002) == 0x00000002) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -6637,10 +7865,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.Track)
@@ -6655,7 +7921,7 @@ public final class RunnerProtos {
   }
 
   public interface RunOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string alias = 1;
     /**
@@ -6691,6 +7957,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.RunObject objectClass = 3;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.RunObject getObjectClass();
+    /**
+     * <code>optional .Runner.RunObject objectClass = 3;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getObjectClassOrBuilder();
 
     // optional int32 averageHeartRateBpm = 4;
     /**
@@ -6711,6 +7981,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.ProtoMap averagePace = 5;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.ProtoMap getAveragePace();
+    /**
+     * <code>optional .Runner.ProtoMap averagePace = 5;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAveragePaceOrBuilder();
 
     // optional .Runner.ProtoMap averageSpeed = 6;
     /**
@@ -6721,6 +7995,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.ProtoMap getAverageSpeed();
+    /**
+     * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAverageSpeedOrBuilder();
 
     // optional int32 calories = 7;
     /**
@@ -6871,6 +8149,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.Track trackObject = 18;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Track getTrackObject();
+    /**
+     * <code>optional .Runner.Track trackObject = 18;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder getTrackObjectOrBuilder();
 
     // optional .Runner.Error error = 19;
     /**
@@ -6881,19 +8163,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 19;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 19;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.Run}
    */
   public static final class Run extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements RunOrBuilder {
     // Use Run.newBuilder() to construct.
-    private Run(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private Run(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private Run(boolean noInit) {}
+    private Run(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final Run defaultInstance;
     public static Run getDefaultInstance() {
@@ -6904,12 +8190,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private Run(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -6919,7 +8213,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -7080,9 +8374,22 @@ public final class RunnerProtos {
         if (((mutable_bitField0_ & 0x00008000) == 0x00008000)) {
           tagList_ = new com.google.protobuf.UnmodifiableLazyStringList(tagList_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Run_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Run_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.Run.class, com.hopped.running.protobuf.RunnerProtos.Run.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<Run> PARSER =
         new com.google.protobuf.AbstractParser<Run>() {
       public Run parsePartialFrom(
@@ -7173,6 +8480,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.RunObject getObjectClass() {
       return objectClass_;
     }
+    /**
+     * <code>optional .Runner.RunObject objectClass = 3;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getObjectClassOrBuilder() {
+      return objectClass_;
+    }
 
     // optional int32 averageHeartRateBpm = 4;
     public static final int AVERAGEHEARTRATEBPM_FIELD_NUMBER = 4;
@@ -7205,6 +8518,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.ProtoMap getAveragePace() {
       return averagePace_;
     }
+    /**
+     * <code>optional .Runner.ProtoMap averagePace = 5;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAveragePaceOrBuilder() {
+      return averagePace_;
+    }
 
     // optional .Runner.ProtoMap averageSpeed = 6;
     public static final int AVERAGESPEED_FIELD_NUMBER = 6;
@@ -7219,6 +8538,12 @@ public final class RunnerProtos {
      * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
      */
     public com.hopped.running.protobuf.RunnerProtos.ProtoMap getAverageSpeed() {
+      return averageSpeed_;
+    }
+    /**
+     * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAverageSpeedOrBuilder() {
       return averageSpeed_;
     }
 
@@ -7495,6 +8820,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.Track getTrackObject() {
       return trackObject_;
     }
+    /**
+     * <code>optional .Runner.Track trackObject = 18;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder getTrackObjectOrBuilder() {
+      return trackObject_;
+    }
 
     // optional .Runner.Error error = 19;
     public static final int ERROR_FIELD_NUMBER = 19;
@@ -7509,6 +8840,12 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 19;</code>
      */
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+      return error_;
+    }
+    /**
+     * <code>optional .Runner.Error error = 19;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
       return error_;
     }
 
@@ -7602,6 +8939,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00010000) == 0x00010000)) {
         output.writeMessage(19, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -7696,6 +9034,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(19, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -7767,19 +9106,48 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.Run}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.Run, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.RunOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.RunOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Run_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Run_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.Run.class, com.hopped.running.protobuf.RunnerProtos.Run.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.Run.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getObjectClassFieldBuilder();
+          getAveragePaceFieldBuilder();
+          getAverageSpeedFieldBuilder();
+          getTrackObjectFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -7791,13 +9159,25 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00000001);
         id_ = 0;
         bitField0_ = (bitField0_ & ~0x00000002);
-        objectClass_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+        if (objectClassBuilder_ == null) {
+          objectClass_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+        } else {
+          objectClassBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
         averageHeartRateBpm_ = 0;
         bitField0_ = (bitField0_ & ~0x00000008);
-        averagePace_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        if (averagePaceBuilder_ == null) {
+          averagePace_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        } else {
+          averagePaceBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000010);
-        averageSpeed_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        if (averageSpeedBuilder_ == null) {
+          averageSpeed_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+        } else {
+          averageSpeedBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000020);
         calories_ = 0;
         bitField0_ = (bitField0_ & ~0x00000040);
@@ -7821,15 +9201,28 @@ public final class RunnerProtos {
         bitField0_ = (bitField0_ & ~0x00008000);
         totalTimeSeconds_ = 0;
         bitField0_ = (bitField0_ & ~0x00010000);
-        trackObject_ = com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance();
+        if (trackObjectBuilder_ == null) {
+          trackObject_ = com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance();
+        } else {
+          trackObjectBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00020000);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00040000);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_Run_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.Run getDefaultInstanceForType() {
@@ -7859,7 +9252,11 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.objectClass_ = objectClass_;
+        if (objectClassBuilder_ == null) {
+          result.objectClass_ = objectClass_;
+        } else {
+          result.objectClass_ = objectClassBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
@@ -7867,11 +9264,19 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.averagePace_ = averagePace_;
+        if (averagePaceBuilder_ == null) {
+          result.averagePace_ = averagePace_;
+        } else {
+          result.averagePace_ = averagePaceBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
         }
-        result.averageSpeed_ = averageSpeed_;
+        if (averageSpeedBuilder_ == null) {
+          result.averageSpeed_ = averageSpeed_;
+        } else {
+          result.averageSpeed_ = averageSpeedBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
           to_bitField0_ |= 0x00000040;
         }
@@ -7923,13 +9328,31 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00020000) == 0x00020000)) {
           to_bitField0_ |= 0x00008000;
         }
-        result.trackObject_ = trackObject_;
+        if (trackObjectBuilder_ == null) {
+          result.trackObject_ = trackObject_;
+        } else {
+          result.trackObject_ = trackObjectBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00040000) == 0x00040000)) {
           to_bitField0_ |= 0x00010000;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.Run) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.Run)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.Run other) {
@@ -7937,7 +9360,7 @@ public final class RunnerProtos {
         if (other.hasAlias()) {
           bitField0_ |= 0x00000001;
           alias_ = other.alias_;
-          
+          onChanged();
         }
         if (other.hasId()) {
           setId(other.getId());
@@ -7963,7 +9386,7 @@ public final class RunnerProtos {
         if (other.hasDescription()) {
           bitField0_ |= 0x00000100;
           description_ = other.description_;
-          
+          onChanged();
         }
         if (other.hasDistanceMeters()) {
           setDistanceMeters(other.getDistanceMeters());
@@ -7985,12 +9408,12 @@ public final class RunnerProtos {
             ensureNotableIsMutable();
             notable_.addAll(other.notable_);
           }
-          
+          onChanged();
         }
         if (other.hasPublicPath()) {
           bitField0_ |= 0x00004000;
           publicPath_ = other.publicPath_;
-          
+          onChanged();
         }
         if (!other.tagList_.isEmpty()) {
           if (tagList_.isEmpty()) {
@@ -8000,7 +9423,7 @@ public final class RunnerProtos {
             ensureTagListIsMutable();
             tagList_.addAll(other.tagList_);
           }
-          
+          onChanged();
         }
         if (other.hasTotalTimeSeconds()) {
           setTotalTimeSeconds(other.getTotalTimeSeconds());
@@ -8011,6 +9434,7 @@ public final class RunnerProtos {
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -8085,7 +9509,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8094,7 +9518,7 @@ public final class RunnerProtos {
       public Builder clearAlias() {
         bitField0_ = (bitField0_ & ~0x00000001);
         alias_ = getDefaultInstance().getAlias();
-        
+        onChanged();
         return this;
       }
       /**
@@ -8107,7 +9531,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         alias_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -8131,7 +9555,7 @@ public final class RunnerProtos {
       public Builder setId(int value) {
         bitField0_ |= 0x00000002;
         id_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8140,12 +9564,14 @@ public final class RunnerProtos {
       public Builder clearId() {
         bitField0_ = (bitField0_ & ~0x00000002);
         id_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.RunObject objectClass = 3;
       private com.hopped.running.protobuf.RunnerProtos.RunObject objectClass_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder> objectClassBuilder_;
       /**
        * <code>optional .Runner.RunObject objectClass = 3;</code>
        */
@@ -8156,17 +9582,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject objectClass = 3;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.RunObject getObjectClass() {
-        return objectClass_;
+        if (objectClassBuilder_ == null) {
+          return objectClass_;
+        } else {
+          return objectClassBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.RunObject objectClass = 3;</code>
        */
       public Builder setObjectClass(com.hopped.running.protobuf.RunnerProtos.RunObject value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (objectClassBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          objectClass_ = value;
+          onChanged();
+        } else {
+          objectClassBuilder_.setMessage(value);
         }
-        objectClass_ = value;
-
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -8175,8 +9609,12 @@ public final class RunnerProtos {
        */
       public Builder setObjectClass(
           com.hopped.running.protobuf.RunnerProtos.RunObject.Builder builderForValue) {
-        objectClass_ = builderForValue.build();
-
+        if (objectClassBuilder_ == null) {
+          objectClass_ = builderForValue.build();
+          onChanged();
+        } else {
+          objectClassBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -8184,14 +9622,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject objectClass = 3;</code>
        */
       public Builder mergeObjectClass(com.hopped.running.protobuf.RunnerProtos.RunObject value) {
-        if (((bitField0_ & 0x00000004) == 0x00000004) &&
-            objectClass_ != com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance()) {
-          objectClass_ =
-            com.hopped.running.protobuf.RunnerProtos.RunObject.newBuilder(objectClass_).mergeFrom(value).buildPartial();
+        if (objectClassBuilder_ == null) {
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+              objectClass_ != com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance()) {
+            objectClass_ =
+              com.hopped.running.protobuf.RunnerProtos.RunObject.newBuilder(objectClass_).mergeFrom(value).buildPartial();
+          } else {
+            objectClass_ = value;
+          }
+          onChanged();
         } else {
-          objectClass_ = value;
+          objectClassBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000004;
         return this;
       }
@@ -8199,10 +9641,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.RunObject objectClass = 3;</code>
        */
       public Builder clearObjectClass() {
-        objectClass_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
-
+        if (objectClassBuilder_ == null) {
+          objectClass_ = com.hopped.running.protobuf.RunnerProtos.RunObject.getDefaultInstance();
+          onChanged();
+        } else {
+          objectClassBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000004);
         return this;
+      }
+      /**
+       * <code>optional .Runner.RunObject objectClass = 3;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.RunObject.Builder getObjectClassBuilder() {
+        bitField0_ |= 0x00000004;
+        onChanged();
+        return getObjectClassFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.RunObject objectClass = 3;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder getObjectClassOrBuilder() {
+        if (objectClassBuilder_ != null) {
+          return objectClassBuilder_.getMessageOrBuilder();
+        } else {
+          return objectClass_;
+        }
+      }
+      /**
+       * <code>optional .Runner.RunObject objectClass = 3;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder> 
+          getObjectClassFieldBuilder() {
+        if (objectClassBuilder_ == null) {
+          objectClassBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.RunObject, com.hopped.running.protobuf.RunnerProtos.RunObject.Builder, com.hopped.running.protobuf.RunnerProtos.RunObjectOrBuilder>(
+                  objectClass_,
+                  getParentForChildren(),
+                  isClean());
+          objectClass_ = null;
+        }
+        return objectClassBuilder_;
       }
 
       // optional int32 averageHeartRateBpm = 4;
@@ -8225,7 +9705,7 @@ public final class RunnerProtos {
       public Builder setAverageHeartRateBpm(int value) {
         bitField0_ |= 0x00000008;
         averageHeartRateBpm_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8234,12 +9714,14 @@ public final class RunnerProtos {
       public Builder clearAverageHeartRateBpm() {
         bitField0_ = (bitField0_ & ~0x00000008);
         averageHeartRateBpm_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.ProtoMap averagePace = 5;
       private com.hopped.running.protobuf.RunnerProtos.ProtoMap averagePace_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> averagePaceBuilder_;
       /**
        * <code>optional .Runner.ProtoMap averagePace = 5;</code>
        */
@@ -8250,17 +9732,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averagePace = 5;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap getAveragePace() {
-        return averagePace_;
+        if (averagePaceBuilder_ == null) {
+          return averagePace_;
+        } else {
+          return averagePaceBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.ProtoMap averagePace = 5;</code>
        */
       public Builder setAveragePace(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (averagePaceBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          averagePace_ = value;
+          onChanged();
+        } else {
+          averagePaceBuilder_.setMessage(value);
         }
-        averagePace_ = value;
-
         bitField0_ |= 0x00000010;
         return this;
       }
@@ -8269,8 +9759,12 @@ public final class RunnerProtos {
        */
       public Builder setAveragePace(
           com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder builderForValue) {
-        averagePace_ = builderForValue.build();
-
+        if (averagePaceBuilder_ == null) {
+          averagePace_ = builderForValue.build();
+          onChanged();
+        } else {
+          averagePaceBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000010;
         return this;
       }
@@ -8278,14 +9772,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averagePace = 5;</code>
        */
       public Builder mergeAveragePace(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (((bitField0_ & 0x00000010) == 0x00000010) &&
-            averagePace_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
-          averagePace_ =
-            com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(averagePace_).mergeFrom(value).buildPartial();
+        if (averagePaceBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              averagePace_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
+            averagePace_ =
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(averagePace_).mergeFrom(value).buildPartial();
+          } else {
+            averagePace_ = value;
+          }
+          onChanged();
         } else {
-          averagePace_ = value;
+          averagePaceBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000010;
         return this;
       }
@@ -8293,14 +9791,54 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averagePace = 5;</code>
        */
       public Builder clearAveragePace() {
-        averagePace_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
-
+        if (averagePaceBuilder_ == null) {
+          averagePace_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+          onChanged();
+        } else {
+          averagePaceBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000010);
         return this;
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averagePace = 5;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder getAveragePaceBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getAveragePaceFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averagePace = 5;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAveragePaceOrBuilder() {
+        if (averagePaceBuilder_ != null) {
+          return averagePaceBuilder_.getMessageOrBuilder();
+        } else {
+          return averagePace_;
+        }
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averagePace = 5;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> 
+          getAveragePaceFieldBuilder() {
+        if (averagePaceBuilder_ == null) {
+          averagePaceBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder>(
+                  averagePace_,
+                  getParentForChildren(),
+                  isClean());
+          averagePace_ = null;
+        }
+        return averagePaceBuilder_;
       }
 
       // optional .Runner.ProtoMap averageSpeed = 6;
       private com.hopped.running.protobuf.RunnerProtos.ProtoMap averageSpeed_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> averageSpeedBuilder_;
       /**
        * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
        */
@@ -8311,17 +9849,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.ProtoMap getAverageSpeed() {
-        return averageSpeed_;
+        if (averageSpeedBuilder_ == null) {
+          return averageSpeed_;
+        } else {
+          return averageSpeedBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
        */
       public Builder setAverageSpeed(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (averageSpeedBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          averageSpeed_ = value;
+          onChanged();
+        } else {
+          averageSpeedBuilder_.setMessage(value);
         }
-        averageSpeed_ = value;
-
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -8330,8 +9876,12 @@ public final class RunnerProtos {
        */
       public Builder setAverageSpeed(
           com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder builderForValue) {
-        averageSpeed_ = builderForValue.build();
-
+        if (averageSpeedBuilder_ == null) {
+          averageSpeed_ = builderForValue.build();
+          onChanged();
+        } else {
+          averageSpeedBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -8339,14 +9889,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
        */
       public Builder mergeAverageSpeed(com.hopped.running.protobuf.RunnerProtos.ProtoMap value) {
-        if (((bitField0_ & 0x00000020) == 0x00000020) &&
-            averageSpeed_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
-          averageSpeed_ =
-            com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(averageSpeed_).mergeFrom(value).buildPartial();
+        if (averageSpeedBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+              averageSpeed_ != com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance()) {
+            averageSpeed_ =
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap.newBuilder(averageSpeed_).mergeFrom(value).buildPartial();
+          } else {
+            averageSpeed_ = value;
+          }
+          onChanged();
         } else {
-          averageSpeed_ = value;
+          averageSpeedBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000020;
         return this;
       }
@@ -8354,10 +9908,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
        */
       public Builder clearAverageSpeed() {
-        averageSpeed_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
-
+        if (averageSpeedBuilder_ == null) {
+          averageSpeed_ = com.hopped.running.protobuf.RunnerProtos.ProtoMap.getDefaultInstance();
+          onChanged();
+        } else {
+          averageSpeedBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000020);
         return this;
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder getAverageSpeedBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getAverageSpeedFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder getAverageSpeedOrBuilder() {
+        if (averageSpeedBuilder_ != null) {
+          return averageSpeedBuilder_.getMessageOrBuilder();
+        } else {
+          return averageSpeed_;
+        }
+      }
+      /**
+       * <code>optional .Runner.ProtoMap averageSpeed = 6;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder> 
+          getAverageSpeedFieldBuilder() {
+        if (averageSpeedBuilder_ == null) {
+          averageSpeedBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.ProtoMap, com.hopped.running.protobuf.RunnerProtos.ProtoMap.Builder, com.hopped.running.protobuf.RunnerProtos.ProtoMapOrBuilder>(
+                  averageSpeed_,
+                  getParentForChildren(),
+                  isClean());
+          averageSpeed_ = null;
+        }
+        return averageSpeedBuilder_;
       }
 
       // optional int32 calories = 7;
@@ -8380,7 +9972,7 @@ public final class RunnerProtos {
       public Builder setCalories(int value) {
         bitField0_ |= 0x00000040;
         calories_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8389,7 +9981,7 @@ public final class RunnerProtos {
       public Builder clearCalories() {
         bitField0_ = (bitField0_ & ~0x00000040);
         calories_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -8413,7 +10005,7 @@ public final class RunnerProtos {
       public Builder setDate(int value) {
         bitField0_ |= 0x00000080;
         date_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8422,7 +10014,7 @@ public final class RunnerProtos {
       public Builder clearDate() {
         bitField0_ = (bitField0_ & ~0x00000080);
         date_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -8474,7 +10066,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000100;
         description_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8483,7 +10075,7 @@ public final class RunnerProtos {
       public Builder clearDescription() {
         bitField0_ = (bitField0_ & ~0x00000100);
         description_ = getDefaultInstance().getDescription();
-        
+        onChanged();
         return this;
       }
       /**
@@ -8496,7 +10088,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000100;
         description_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -8520,7 +10112,7 @@ public final class RunnerProtos {
       public Builder setDistanceMeters(double value) {
         bitField0_ |= 0x00000200;
         distanceMeters_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8529,7 +10121,7 @@ public final class RunnerProtos {
       public Builder clearDistanceMeters() {
         bitField0_ = (bitField0_ & ~0x00000200);
         distanceMeters_ = 0D;
-        
+        onChanged();
         return this;
       }
 
@@ -8553,7 +10145,7 @@ public final class RunnerProtos {
       public Builder setIsVisible(boolean value) {
         bitField0_ |= 0x00000400;
         isVisible_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8562,7 +10154,7 @@ public final class RunnerProtos {
       public Builder clearIsVisible() {
         bitField0_ = (bitField0_ & ~0x00000400);
         isVisible_ = false;
-        
+        onChanged();
         return this;
       }
 
@@ -8586,7 +10178,7 @@ public final class RunnerProtos {
       public Builder setMaximumSpeed(double value) {
         bitField0_ |= 0x00000800;
         maximumSpeed_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8595,7 +10187,7 @@ public final class RunnerProtos {
       public Builder clearMaximumSpeed() {
         bitField0_ = (bitField0_ & ~0x00000800);
         maximumSpeed_ = 0D;
-        
+        onChanged();
         return this;
       }
 
@@ -8619,7 +10211,7 @@ public final class RunnerProtos {
       public Builder setMaximumHeartRateBpm(int value) {
         bitField0_ |= 0x00001000;
         maximumHeartRateBpm_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8628,7 +10220,7 @@ public final class RunnerProtos {
       public Builder clearMaximumHeartRateBpm() {
         bitField0_ = (bitField0_ & ~0x00001000);
         maximumHeartRateBpm_ = 0;
-        
+        onChanged();
         return this;
       }
 
@@ -8676,7 +10268,7 @@ public final class RunnerProtos {
   }
   ensureNotableIsMutable();
         notable_.set(index, value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8689,7 +10281,7 @@ public final class RunnerProtos {
   }
   ensureNotableIsMutable();
         notable_.add(value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8699,7 +10291,7 @@ public final class RunnerProtos {
           java.lang.Iterable<java.lang.String> values) {
         ensureNotableIsMutable();
         super.addAll(values, notable_);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8708,7 +10300,7 @@ public final class RunnerProtos {
       public Builder clearNotable() {
         notable_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00002000);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8721,7 +10313,7 @@ public final class RunnerProtos {
   }
   ensureNotableIsMutable();
         notable_.add(value);
-        
+        onChanged();
         return this;
       }
 
@@ -8773,7 +10365,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00004000;
         publicPath_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8782,7 +10374,7 @@ public final class RunnerProtos {
       public Builder clearPublicPath() {
         bitField0_ = (bitField0_ & ~0x00004000);
         publicPath_ = getDefaultInstance().getPublicPath();
-        
+        onChanged();
         return this;
       }
       /**
@@ -8795,7 +10387,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00004000;
         publicPath_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -8843,7 +10435,7 @@ public final class RunnerProtos {
   }
   ensureTagListIsMutable();
         tagList_.set(index, value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8856,7 +10448,7 @@ public final class RunnerProtos {
   }
   ensureTagListIsMutable();
         tagList_.add(value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8866,7 +10458,7 @@ public final class RunnerProtos {
           java.lang.Iterable<java.lang.String> values) {
         ensureTagListIsMutable();
         super.addAll(values, tagList_);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8875,7 +10467,7 @@ public final class RunnerProtos {
       public Builder clearTagList() {
         tagList_ = com.google.protobuf.LazyStringArrayList.EMPTY;
         bitField0_ = (bitField0_ & ~0x00008000);
-        
+        onChanged();
         return this;
       }
       /**
@@ -8888,7 +10480,7 @@ public final class RunnerProtos {
   }
   ensureTagListIsMutable();
         tagList_.add(value);
-        
+        onChanged();
         return this;
       }
 
@@ -8912,7 +10504,7 @@ public final class RunnerProtos {
       public Builder setTotalTimeSeconds(int value) {
         bitField0_ |= 0x00010000;
         totalTimeSeconds_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -8921,12 +10513,14 @@ public final class RunnerProtos {
       public Builder clearTotalTimeSeconds() {
         bitField0_ = (bitField0_ & ~0x00010000);
         totalTimeSeconds_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.Track trackObject = 18;
       private com.hopped.running.protobuf.RunnerProtos.Track trackObject_ = com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Track, com.hopped.running.protobuf.RunnerProtos.Track.Builder, com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder> trackObjectBuilder_;
       /**
        * <code>optional .Runner.Track trackObject = 18;</code>
        */
@@ -8937,17 +10531,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Track trackObject = 18;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Track getTrackObject() {
-        return trackObject_;
+        if (trackObjectBuilder_ == null) {
+          return trackObject_;
+        } else {
+          return trackObjectBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Track trackObject = 18;</code>
        */
       public Builder setTrackObject(com.hopped.running.protobuf.RunnerProtos.Track value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (trackObjectBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          trackObject_ = value;
+          onChanged();
+        } else {
+          trackObjectBuilder_.setMessage(value);
         }
-        trackObject_ = value;
-
         bitField0_ |= 0x00020000;
         return this;
       }
@@ -8956,8 +10558,12 @@ public final class RunnerProtos {
        */
       public Builder setTrackObject(
           com.hopped.running.protobuf.RunnerProtos.Track.Builder builderForValue) {
-        trackObject_ = builderForValue.build();
-
+        if (trackObjectBuilder_ == null) {
+          trackObject_ = builderForValue.build();
+          onChanged();
+        } else {
+          trackObjectBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00020000;
         return this;
       }
@@ -8965,14 +10571,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Track trackObject = 18;</code>
        */
       public Builder mergeTrackObject(com.hopped.running.protobuf.RunnerProtos.Track value) {
-        if (((bitField0_ & 0x00020000) == 0x00020000) &&
-            trackObject_ != com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance()) {
-          trackObject_ =
-            com.hopped.running.protobuf.RunnerProtos.Track.newBuilder(trackObject_).mergeFrom(value).buildPartial();
+        if (trackObjectBuilder_ == null) {
+          if (((bitField0_ & 0x00020000) == 0x00020000) &&
+              trackObject_ != com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance()) {
+            trackObject_ =
+              com.hopped.running.protobuf.RunnerProtos.Track.newBuilder(trackObject_).mergeFrom(value).buildPartial();
+          } else {
+            trackObject_ = value;
+          }
+          onChanged();
         } else {
-          trackObject_ = value;
+          trackObjectBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00020000;
         return this;
       }
@@ -8980,14 +10590,54 @@ public final class RunnerProtos {
        * <code>optional .Runner.Track trackObject = 18;</code>
        */
       public Builder clearTrackObject() {
-        trackObject_ = com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance();
-
+        if (trackObjectBuilder_ == null) {
+          trackObject_ = com.hopped.running.protobuf.RunnerProtos.Track.getDefaultInstance();
+          onChanged();
+        } else {
+          trackObjectBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00020000);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Track trackObject = 18;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Track.Builder getTrackObjectBuilder() {
+        bitField0_ |= 0x00020000;
+        onChanged();
+        return getTrackObjectFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Track trackObject = 18;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder getTrackObjectOrBuilder() {
+        if (trackObjectBuilder_ != null) {
+          return trackObjectBuilder_.getMessageOrBuilder();
+        } else {
+          return trackObject_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Track trackObject = 18;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Track, com.hopped.running.protobuf.RunnerProtos.Track.Builder, com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder> 
+          getTrackObjectFieldBuilder() {
+        if (trackObjectBuilder_ == null) {
+          trackObjectBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Track, com.hopped.running.protobuf.RunnerProtos.Track.Builder, com.hopped.running.protobuf.RunnerProtos.TrackOrBuilder>(
+                  trackObject_,
+                  getParentForChildren(),
+                  isClean());
+          trackObject_ = null;
+        }
+        return trackObjectBuilder_;
       }
 
       // optional .Runner.Error error = 19;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 19;</code>
        */
@@ -8998,17 +10648,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 19;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 19;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -9017,8 +10675,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -9026,14 +10688,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 19;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00040000) == 0x00040000) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00040000) == 0x00040000) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00040000;
         return this;
       }
@@ -9041,10 +10707,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 19;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00040000);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 19;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00040000;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 19;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 19;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.Run)
@@ -9059,7 +10763,7 @@ public final class RunnerProtos {
   }
 
   public interface RunListOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // repeated .Runner.Run runs = 1;
     /**
@@ -9075,6 +10779,16 @@ public final class RunnerProtos {
      * <code>repeated .Runner.Run runs = 1;</code>
      */
     int getRunsCount();
+    /**
+     * <code>repeated .Runner.Run runs = 1;</code>
+     */
+    java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.RunOrBuilder> 
+        getRunsOrBuilderList();
+    /**
+     * <code>repeated .Runner.Run runs = 1;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.RunOrBuilder getRunsOrBuilder(
+        int index);
 
     // optional .Runner.Error error = 2;
     /**
@@ -9085,19 +10799,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 2;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.RunList}
    */
   public static final class RunList extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements RunListOrBuilder {
     // Use RunList.newBuilder() to construct.
-    private RunList(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private RunList(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private RunList(boolean noInit) {}
+    private RunList(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final RunList defaultInstance;
     public static RunList getDefaultInstance() {
@@ -9108,12 +10826,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private RunList(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9123,7 +10849,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -9161,9 +10887,22 @@ public final class RunnerProtos {
         if (((mutable_bitField0_ & 0x00000001) == 0x00000001)) {
           runs_ = java.util.Collections.unmodifiableList(runs_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunList_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunList_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.RunList.class, com.hopped.running.protobuf.RunnerProtos.RunList.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<RunList> PARSER =
         new com.google.protobuf.AbstractParser<RunList>() {
       public RunList parsePartialFrom(
@@ -9231,6 +10970,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
       return error_;
     }
+    /**
+     * <code>optional .Runner.Error error = 2;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+      return error_;
+    }
 
     private void initFields() {
       runs_ = java.util.Collections.emptyList();
@@ -9254,6 +10999,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         output.writeMessage(2, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -9270,6 +11016,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(2, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -9341,19 +11088,45 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.RunList}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.RunList, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.RunListOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.RunListOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunList_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunList_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.RunList.class, com.hopped.running.protobuf.RunnerProtos.RunList.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.RunList.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getRunsFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -9361,15 +11134,28 @@ public final class RunnerProtos {
 
       public Builder clear() {
         super.clear();
-        runs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (runsBuilder_ == null) {
+          runs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          runsBuilder_.clear();
+        }
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunList_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.RunList getDefaultInstanceForType() {
@@ -9388,34 +11174,69 @@ public final class RunnerProtos {
         com.hopped.running.protobuf.RunnerProtos.RunList result = new com.hopped.running.protobuf.RunnerProtos.RunList(this);
         int from_bitField0_ = bitField0_;
         int to_bitField0_ = 0;
-        if (((bitField0_ & 0x00000001) == 0x00000001)) {
-          runs_ = java.util.Collections.unmodifiableList(runs_);
-          bitField0_ = (bitField0_ & ~0x00000001);
+        if (runsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            runs_ = java.util.Collections.unmodifiableList(runs_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.runs_ = runs_;
+        } else {
+          result.runs_ = runsBuilder_.build();
         }
-        result.runs_ = runs_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.RunList) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.RunList)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.RunList other) {
         if (other == com.hopped.running.protobuf.RunnerProtos.RunList.getDefaultInstance()) return this;
-        if (!other.runs_.isEmpty()) {
-          if (runs_.isEmpty()) {
-            runs_ = other.runs_;
-            bitField0_ = (bitField0_ & ~0x00000001);
-          } else {
-            ensureRunsIsMutable();
-            runs_.addAll(other.runs_);
+        if (runsBuilder_ == null) {
+          if (!other.runs_.isEmpty()) {
+            if (runs_.isEmpty()) {
+              runs_ = other.runs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureRunsIsMutable();
+              runs_.addAll(other.runs_);
+            }
+            onChanged();
           }
-          
+        } else {
+          if (!other.runs_.isEmpty()) {
+            if (runsBuilder_.isEmpty()) {
+              runsBuilder_.dispose();
+              runsBuilder_ = null;
+              runs_ = other.runs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              runsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getRunsFieldBuilder() : null;
+            } else {
+              runsBuilder_.addAllMessages(other.runs_);
+            }
+          }
         }
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -9452,35 +11273,54 @@ public final class RunnerProtos {
          }
       }
 
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Run, com.hopped.running.protobuf.RunnerProtos.Run.Builder, com.hopped.running.protobuf.RunnerProtos.RunOrBuilder> runsBuilder_;
+
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public java.util.List<com.hopped.running.protobuf.RunnerProtos.Run> getRunsList() {
-        return java.util.Collections.unmodifiableList(runs_);
+        if (runsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(runs_);
+        } else {
+          return runsBuilder_.getMessageList();
+        }
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public int getRunsCount() {
-        return runs_.size();
+        if (runsBuilder_ == null) {
+          return runs_.size();
+        } else {
+          return runsBuilder_.getCount();
+        }
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Run getRuns(int index) {
-        return runs_.get(index);
+        if (runsBuilder_ == null) {
+          return runs_.get(index);
+        } else {
+          return runsBuilder_.getMessage(index);
+        }
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public Builder setRuns(
           int index, com.hopped.running.protobuf.RunnerProtos.Run value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (runsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRunsIsMutable();
+          runs_.set(index, value);
+          onChanged();
+        } else {
+          runsBuilder_.setMessage(index, value);
         }
-        ensureRunsIsMutable();
-        runs_.set(index, value);
-
         return this;
       }
       /**
@@ -9488,21 +11328,29 @@ public final class RunnerProtos {
        */
       public Builder setRuns(
           int index, com.hopped.running.protobuf.RunnerProtos.Run.Builder builderForValue) {
-        ensureRunsIsMutable();
-        runs_.set(index, builderForValue.build());
-
+        if (runsBuilder_ == null) {
+          ensureRunsIsMutable();
+          runs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          runsBuilder_.setMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public Builder addRuns(com.hopped.running.protobuf.RunnerProtos.Run value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (runsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRunsIsMutable();
+          runs_.add(value);
+          onChanged();
+        } else {
+          runsBuilder_.addMessage(value);
         }
-        ensureRunsIsMutable();
-        runs_.add(value);
-
         return this;
       }
       /**
@@ -9510,12 +11358,16 @@ public final class RunnerProtos {
        */
       public Builder addRuns(
           int index, com.hopped.running.protobuf.RunnerProtos.Run value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (runsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureRunsIsMutable();
+          runs_.add(index, value);
+          onChanged();
+        } else {
+          runsBuilder_.addMessage(index, value);
         }
-        ensureRunsIsMutable();
-        runs_.add(index, value);
-
         return this;
       }
       /**
@@ -9523,9 +11375,13 @@ public final class RunnerProtos {
        */
       public Builder addRuns(
           com.hopped.running.protobuf.RunnerProtos.Run.Builder builderForValue) {
-        ensureRunsIsMutable();
-        runs_.add(builderForValue.build());
-
+        if (runsBuilder_ == null) {
+          ensureRunsIsMutable();
+          runs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          runsBuilder_.addMessage(builderForValue.build());
+        }
         return this;
       }
       /**
@@ -9533,9 +11389,13 @@ public final class RunnerProtos {
        */
       public Builder addRuns(
           int index, com.hopped.running.protobuf.RunnerProtos.Run.Builder builderForValue) {
-        ensureRunsIsMutable();
-        runs_.add(index, builderForValue.build());
-
+        if (runsBuilder_ == null) {
+          ensureRunsIsMutable();
+          runs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          runsBuilder_.addMessage(index, builderForValue.build());
+        }
         return this;
       }
       /**
@@ -9543,32 +11403,110 @@ public final class RunnerProtos {
        */
       public Builder addAllRuns(
           java.lang.Iterable<? extends com.hopped.running.protobuf.RunnerProtos.Run> values) {
-        ensureRunsIsMutable();
-        super.addAll(values, runs_);
-
+        if (runsBuilder_ == null) {
+          ensureRunsIsMutable();
+          super.addAll(values, runs_);
+          onChanged();
+        } else {
+          runsBuilder_.addAllMessages(values);
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public Builder clearRuns() {
-        runs_ = java.util.Collections.emptyList();
-        bitField0_ = (bitField0_ & ~0x00000001);
-
+        if (runsBuilder_ == null) {
+          runs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          runsBuilder_.clear();
+        }
         return this;
       }
       /**
        * <code>repeated .Runner.Run runs = 1;</code>
        */
       public Builder removeRuns(int index) {
-        ensureRunsIsMutable();
-        runs_.remove(index);
-
+        if (runsBuilder_ == null) {
+          ensureRunsIsMutable();
+          runs_.remove(index);
+          onChanged();
+        } else {
+          runsBuilder_.remove(index);
+        }
         return this;
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Run.Builder getRunsBuilder(
+          int index) {
+        return getRunsFieldBuilder().getBuilder(index);
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.RunOrBuilder getRunsOrBuilder(
+          int index) {
+        if (runsBuilder_ == null) {
+          return runs_.get(index);  } else {
+          return runsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public java.util.List<? extends com.hopped.running.protobuf.RunnerProtos.RunOrBuilder> 
+           getRunsOrBuilderList() {
+        if (runsBuilder_ != null) {
+          return runsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(runs_);
+        }
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Run.Builder addRunsBuilder() {
+        return getRunsFieldBuilder().addBuilder(
+            com.hopped.running.protobuf.RunnerProtos.Run.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Run.Builder addRunsBuilder(
+          int index) {
+        return getRunsFieldBuilder().addBuilder(
+            index, com.hopped.running.protobuf.RunnerProtos.Run.getDefaultInstance());
+      }
+      /**
+       * <code>repeated .Runner.Run runs = 1;</code>
+       */
+      public java.util.List<com.hopped.running.protobuf.RunnerProtos.Run.Builder> 
+           getRunsBuilderList() {
+        return getRunsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Run, com.hopped.running.protobuf.RunnerProtos.Run.Builder, com.hopped.running.protobuf.RunnerProtos.RunOrBuilder> 
+          getRunsFieldBuilder() {
+        if (runsBuilder_ == null) {
+          runsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Run, com.hopped.running.protobuf.RunnerProtos.Run.Builder, com.hopped.running.protobuf.RunnerProtos.RunOrBuilder>(
+                  runs_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          runs_ = null;
+        }
+        return runsBuilder_;
       }
 
       // optional .Runner.Error error = 2;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 2;</code>
        */
@@ -9579,17 +11517,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -9598,8 +11544,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -9607,14 +11557,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00000002) == 0x00000002) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -9622,10 +11576,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 2;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.RunList)
@@ -9640,7 +11632,7 @@ public final class RunnerProtos {
   }
 
   public interface AuthRequestOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string username = 1;
     /**
@@ -9676,14 +11668,14 @@ public final class RunnerProtos {
    * Protobuf type {@code Runner.AuthRequest}
    */
   public static final class AuthRequest extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements AuthRequestOrBuilder {
     // Use AuthRequest.newBuilder() to construct.
-    private AuthRequest(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private AuthRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private AuthRequest(boolean noInit) {}
+    private AuthRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final AuthRequest defaultInstance;
     public static AuthRequest getDefaultInstance() {
@@ -9694,12 +11686,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private AuthRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -9709,7 +11709,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -9733,9 +11733,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.AuthRequest.class, com.hopped.running.protobuf.RunnerProtos.AuthRequest.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<AuthRequest> PARSER =
         new com.google.protobuf.AbstractParser<AuthRequest>() {
       public AuthRequest parsePartialFrom(
@@ -9860,6 +11873,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeBytes(2, getPasswordBytes());
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -9876,6 +11890,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(2, getPasswordBytes());
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -9947,19 +11962,43 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.AuthRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.AuthRequest, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.AuthRequestOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.AuthRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.AuthRequest.class, com.hopped.running.protobuf.RunnerProtos.AuthRequest.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.AuthRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -9976,6 +12015,11 @@ public final class RunnerProtos {
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthRequest_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.AuthRequest getDefaultInstanceForType() {
@@ -10003,7 +12047,17 @@ public final class RunnerProtos {
         }
         result.password_ = password_;
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.AuthRequest) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.AuthRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.AuthRequest other) {
@@ -10011,13 +12065,14 @@ public final class RunnerProtos {
         if (other.hasUsername()) {
           bitField0_ |= 0x00000001;
           username_ = other.username_;
-          
+          onChanged();
         }
         if (other.hasPassword()) {
           bitField0_ |= 0x00000002;
           password_ = other.password_;
-          
+          onChanged();
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -10092,7 +12147,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         username_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -10101,7 +12156,7 @@ public final class RunnerProtos {
       public Builder clearUsername() {
         bitField0_ = (bitField0_ & ~0x00000001);
         username_ = getDefaultInstance().getUsername();
-        
+        onChanged();
         return this;
       }
       /**
@@ -10114,7 +12169,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         username_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -10166,7 +12221,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         password_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -10175,7 +12230,7 @@ public final class RunnerProtos {
       public Builder clearPassword() {
         bitField0_ = (bitField0_ & ~0x00000002);
         password_ = getDefaultInstance().getPassword();
-        
+        onChanged();
         return this;
       }
       /**
@@ -10188,7 +12243,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000002;
         password_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -10204,7 +12259,7 @@ public final class RunnerProtos {
   }
 
   public interface AuthResponseOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string sessionId = 1;
     /**
@@ -10230,6 +12285,10 @@ public final class RunnerProtos {
      * <code>optional .Runner.User user = 2;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.User getUser();
+    /**
+     * <code>optional .Runner.User user = 2;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.UserOrBuilder getUserOrBuilder();
 
     // optional int32 sessionTimeout = 3;
     /**
@@ -10250,19 +12309,23 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 4;</code>
      */
     com.hopped.running.protobuf.RunnerProtos.Error getError();
+    /**
+     * <code>optional .Runner.Error error = 4;</code>
+     */
+    com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder();
   }
   /**
    * Protobuf type {@code Runner.AuthResponse}
    */
   public static final class AuthResponse extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements AuthResponseOrBuilder {
     // Use AuthResponse.newBuilder() to construct.
-    private AuthResponse(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private AuthResponse(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private AuthResponse(boolean noInit) {}
+    private AuthResponse(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final AuthResponse defaultInstance;
     public static AuthResponse getDefaultInstance() {
@@ -10273,12 +12336,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private AuthResponse(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -10288,7 +12359,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -10338,9 +12409,22 @@ public final class RunnerProtos {
         throw new com.google.protobuf.InvalidProtocolBufferException(
             e.getMessage()).setUnfinishedMessage(this);
       } finally {
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthResponse_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthResponse_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.AuthResponse.class, com.hopped.running.protobuf.RunnerProtos.AuthResponse.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<AuthResponse> PARSER =
         new com.google.protobuf.AbstractParser<AuthResponse>() {
       public AuthResponse parsePartialFrom(
@@ -10415,6 +12499,12 @@ public final class RunnerProtos {
     public com.hopped.running.protobuf.RunnerProtos.User getUser() {
       return user_;
     }
+    /**
+     * <code>optional .Runner.User user = 2;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.UserOrBuilder getUserOrBuilder() {
+      return user_;
+    }
 
     // optional int32 sessionTimeout = 3;
     public static final int SESSIONTIMEOUT_FIELD_NUMBER = 3;
@@ -10445,6 +12535,12 @@ public final class RunnerProtos {
      * <code>optional .Runner.Error error = 4;</code>
      */
     public com.hopped.running.protobuf.RunnerProtos.Error getError() {
+      return error_;
+    }
+    /**
+     * <code>optional .Runner.Error error = 4;</code>
+     */
+    public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
       return error_;
     }
 
@@ -10478,6 +12574,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         output.writeMessage(4, error_);
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -10502,6 +12599,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, error_);
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -10573,19 +12671,45 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.AuthResponse}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.AuthResponse, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.AuthResponseOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.AuthResponseOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthResponse_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthResponse_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.AuthResponse.class, com.hopped.running.protobuf.RunnerProtos.AuthResponse.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.AuthResponse.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getUserFieldBuilder();
+          getErrorFieldBuilder();
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -10595,17 +12719,30 @@ public final class RunnerProtos {
         super.clear();
         sessionId_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        user_ = com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance();
+        if (userBuilder_ == null) {
+          user_ = com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance();
+        } else {
+          userBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         sessionTimeout_ = 0;
         bitField0_ = (bitField0_ & ~0x00000004);
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_AuthResponse_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.AuthResponse getDefaultInstanceForType() {
@@ -10631,7 +12768,11 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.user_ = user_;
+        if (userBuilder_ == null) {
+          result.user_ = user_;
+        } else {
+          result.user_ = userBuilder_.build();
+        }
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
@@ -10639,9 +12780,23 @@ public final class RunnerProtos {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.error_ = error_;
+        if (errorBuilder_ == null) {
+          result.error_ = error_;
+        } else {
+          result.error_ = errorBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.AuthResponse) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.AuthResponse)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.AuthResponse other) {
@@ -10649,7 +12804,7 @@ public final class RunnerProtos {
         if (other.hasSessionId()) {
           bitField0_ |= 0x00000001;
           sessionId_ = other.sessionId_;
-          
+          onChanged();
         }
         if (other.hasUser()) {
           mergeUser(other.getUser());
@@ -10660,6 +12815,7 @@ public final class RunnerProtos {
         if (other.hasError()) {
           mergeError(other.getError());
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -10734,7 +12890,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         sessionId_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -10743,7 +12899,7 @@ public final class RunnerProtos {
       public Builder clearSessionId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         sessionId_ = getDefaultInstance().getSessionId();
-        
+        onChanged();
         return this;
       }
       /**
@@ -10756,12 +12912,14 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         sessionId_ = value;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.User user = 2;
       private com.hopped.running.protobuf.RunnerProtos.User user_ = com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.User, com.hopped.running.protobuf.RunnerProtos.User.Builder, com.hopped.running.protobuf.RunnerProtos.UserOrBuilder> userBuilder_;
       /**
        * <code>optional .Runner.User user = 2;</code>
        */
@@ -10772,17 +12930,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.User user = 2;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.User getUser() {
-        return user_;
+        if (userBuilder_ == null) {
+          return user_;
+        } else {
+          return userBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.User user = 2;</code>
        */
       public Builder setUser(com.hopped.running.protobuf.RunnerProtos.User value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (userBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          user_ = value;
+          onChanged();
+        } else {
+          userBuilder_.setMessage(value);
         }
-        user_ = value;
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -10791,8 +12957,12 @@ public final class RunnerProtos {
        */
       public Builder setUser(
           com.hopped.running.protobuf.RunnerProtos.User.Builder builderForValue) {
-        user_ = builderForValue.build();
-
+        if (userBuilder_ == null) {
+          user_ = builderForValue.build();
+          onChanged();
+        } else {
+          userBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -10800,14 +12970,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.User user = 2;</code>
        */
       public Builder mergeUser(com.hopped.running.protobuf.RunnerProtos.User value) {
-        if (((bitField0_ & 0x00000002) == 0x00000002) &&
-            user_ != com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance()) {
-          user_ =
-            com.hopped.running.protobuf.RunnerProtos.User.newBuilder(user_).mergeFrom(value).buildPartial();
+        if (userBuilder_ == null) {
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+              user_ != com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance()) {
+            user_ =
+              com.hopped.running.protobuf.RunnerProtos.User.newBuilder(user_).mergeFrom(value).buildPartial();
+          } else {
+            user_ = value;
+          }
+          onChanged();
         } else {
-          user_ = value;
+          userBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000002;
         return this;
       }
@@ -10815,10 +12989,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.User user = 2;</code>
        */
       public Builder clearUser() {
-        user_ = com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance();
-
+        if (userBuilder_ == null) {
+          user_ = com.hopped.running.protobuf.RunnerProtos.User.getDefaultInstance();
+          onChanged();
+        } else {
+          userBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000002);
         return this;
+      }
+      /**
+       * <code>optional .Runner.User user = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.User.Builder getUserBuilder() {
+        bitField0_ |= 0x00000002;
+        onChanged();
+        return getUserFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.User user = 2;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.UserOrBuilder getUserOrBuilder() {
+        if (userBuilder_ != null) {
+          return userBuilder_.getMessageOrBuilder();
+        } else {
+          return user_;
+        }
+      }
+      /**
+       * <code>optional .Runner.User user = 2;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.User, com.hopped.running.protobuf.RunnerProtos.User.Builder, com.hopped.running.protobuf.RunnerProtos.UserOrBuilder> 
+          getUserFieldBuilder() {
+        if (userBuilder_ == null) {
+          userBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.User, com.hopped.running.protobuf.RunnerProtos.User.Builder, com.hopped.running.protobuf.RunnerProtos.UserOrBuilder>(
+                  user_,
+                  getParentForChildren(),
+                  isClean());
+          user_ = null;
+        }
+        return userBuilder_;
       }
 
       // optional int32 sessionTimeout = 3;
@@ -10841,7 +13053,7 @@ public final class RunnerProtos {
       public Builder setSessionTimeout(int value) {
         bitField0_ |= 0x00000004;
         sessionTimeout_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -10850,12 +13062,14 @@ public final class RunnerProtos {
       public Builder clearSessionTimeout() {
         bitField0_ = (bitField0_ & ~0x00000004);
         sessionTimeout_ = 0;
-        
+        onChanged();
         return this;
       }
 
       // optional .Runner.Error error = 4;
       private com.hopped.running.protobuf.RunnerProtos.Error error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> errorBuilder_;
       /**
        * <code>optional .Runner.Error error = 4;</code>
        */
@@ -10866,17 +13080,25 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 4;</code>
        */
       public com.hopped.running.protobuf.RunnerProtos.Error getError() {
-        return error_;
+        if (errorBuilder_ == null) {
+          return error_;
+        } else {
+          return errorBuilder_.getMessage();
+        }
       }
       /**
        * <code>optional .Runner.Error error = 4;</code>
        */
       public Builder setError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (value == null) {
-          throw new NullPointerException();
+        if (errorBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          error_ = value;
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(value);
         }
-        error_ = value;
-
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -10885,8 +13107,12 @@ public final class RunnerProtos {
        */
       public Builder setError(
           com.hopped.running.protobuf.RunnerProtos.Error.Builder builderForValue) {
-        error_ = builderForValue.build();
-
+        if (errorBuilder_ == null) {
+          error_ = builderForValue.build();
+          onChanged();
+        } else {
+          errorBuilder_.setMessage(builderForValue.build());
+        }
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -10894,14 +13120,18 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 4;</code>
        */
       public Builder mergeError(com.hopped.running.protobuf.RunnerProtos.Error value) {
-        if (((bitField0_ & 0x00000008) == 0x00000008) &&
-            error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
-          error_ =
-            com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+        if (errorBuilder_ == null) {
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+              error_ != com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance()) {
+            error_ =
+              com.hopped.running.protobuf.RunnerProtos.Error.newBuilder(error_).mergeFrom(value).buildPartial();
+          } else {
+            error_ = value;
+          }
+          onChanged();
         } else {
-          error_ = value;
+          errorBuilder_.mergeFrom(value);
         }
-
         bitField0_ |= 0x00000008;
         return this;
       }
@@ -10909,10 +13139,48 @@ public final class RunnerProtos {
        * <code>optional .Runner.Error error = 4;</code>
        */
       public Builder clearError() {
-        error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
-
+        if (errorBuilder_ == null) {
+          error_ = com.hopped.running.protobuf.RunnerProtos.Error.getDefaultInstance();
+          onChanged();
+        } else {
+          errorBuilder_.clear();
+        }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
+      }
+      /**
+       * <code>optional .Runner.Error error = 4;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.Error.Builder getErrorBuilder() {
+        bitField0_ |= 0x00000008;
+        onChanged();
+        return getErrorFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Runner.Error error = 4;</code>
+       */
+      public com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder getErrorOrBuilder() {
+        if (errorBuilder_ != null) {
+          return errorBuilder_.getMessageOrBuilder();
+        } else {
+          return error_;
+        }
+      }
+      /**
+       * <code>optional .Runner.Error error = 4;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder> 
+          getErrorFieldBuilder() {
+        if (errorBuilder_ == null) {
+          errorBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              com.hopped.running.protobuf.RunnerProtos.Error, com.hopped.running.protobuf.RunnerProtos.Error.Builder, com.hopped.running.protobuf.RunnerProtos.ErrorOrBuilder>(
+                  error_,
+                  getParentForChildren(),
+                  isClean());
+          error_ = null;
+        }
+        return errorBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Runner.AuthResponse)
@@ -10927,7 +13195,7 @@ public final class RunnerProtos {
   }
 
   public interface RunRequestOrBuilder
-      extends com.google.protobuf.MessageLiteOrBuilder {
+      extends com.google.protobuf.MessageOrBuilder {
 
     // optional string sessionId = 1;
     /**
@@ -10992,14 +13260,14 @@ public final class RunnerProtos {
    * Protobuf type {@code Runner.RunRequest}
    */
   public static final class RunRequest extends
-      com.google.protobuf.GeneratedMessageLite
+      com.google.protobuf.GeneratedMessage
       implements RunRequestOrBuilder {
     // Use RunRequest.newBuilder() to construct.
-    private RunRequest(com.google.protobuf.GeneratedMessageLite.Builder builder) {
+    private RunRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
       super(builder);
-
+      this.unknownFields = builder.getUnknownFields();
     }
-    private RunRequest(boolean noInit) {}
+    private RunRequest(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
 
     private static final RunRequest defaultInstance;
     public static RunRequest getDefaultInstance() {
@@ -11010,12 +13278,20 @@ public final class RunnerProtos {
       return defaultInstance;
     }
 
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
     private RunRequest(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
       initFields();
       int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
       try {
         boolean done = false;
         while (!done) {
@@ -11025,7 +13301,7 @@ public final class RunnerProtos {
               done = true;
               break;
             default: {
-              if (!parseUnknownField(input,
+              if (!parseUnknownField(input, unknownFields,
                                      extensionRegistry, tag)) {
                 done = true;
               }
@@ -11078,9 +13354,22 @@ public final class RunnerProtos {
         if (((mutable_bitField0_ & 0x00000002) == 0x00000002)) {
           runId_ = java.util.Collections.unmodifiableList(runId_);
         }
+        this.unknownFields = unknownFields.build();
         makeExtensionsImmutable();
       }
     }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunRequest_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunRequest_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.RunRequest.class, com.hopped.running.protobuf.RunnerProtos.RunRequest.Builder.class);
+    }
+
     public static com.google.protobuf.Parser<RunRequest> PARSER =
         new com.google.protobuf.AbstractParser<RunRequest>() {
       public RunRequest parsePartialFrom(
@@ -11279,6 +13568,7 @@ public final class RunnerProtos {
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         output.writeBytes(4, getDistanceBytes());
       }
+      getUnknownFields().writeTo(output);
     }
 
     private int memoizedSerializedSize = -1;
@@ -11308,6 +13598,7 @@ public final class RunnerProtos {
         size += com.google.protobuf.CodedOutputStream
           .computeBytesSize(4, getDistanceBytes());
       }
+      size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
       return size;
     }
@@ -11379,19 +13670,43 @@ public final class RunnerProtos {
     }
     public Builder toBuilder() { return newBuilder(this); }
 
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
     /**
      * Protobuf type {@code Runner.RunRequest}
      */
     public static final class Builder extends
-        com.google.protobuf.GeneratedMessageLite.Builder<
-          com.hopped.running.protobuf.RunnerProtos.RunRequest, Builder>
-        implements com.hopped.running.protobuf.RunnerProtos.RunRequestOrBuilder {
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.RunRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunRequest_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunRequest_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.RunRequest.class, com.hopped.running.protobuf.RunnerProtos.RunRequest.Builder.class);
+      }
+
       // Construct using com.hopped.running.protobuf.RunnerProtos.RunRequest.newBuilder()
       private Builder() {
         maybeForceBuilderInitialization();
       }
 
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
       private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
       }
       private static Builder create() {
         return new Builder();
@@ -11412,6 +13727,11 @@ public final class RunnerProtos {
 
       public Builder clone() {
         return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RunRequest_descriptor;
       }
 
       public com.hopped.running.protobuf.RunnerProtos.RunRequest getDefaultInstanceForType() {
@@ -11448,7 +13768,17 @@ public final class RunnerProtos {
         }
         result.distance_ = distance_;
         result.bitField0_ = to_bitField0_;
+        onBuilt();
         return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.RunRequest) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.RunRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
       }
 
       public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.RunRequest other) {
@@ -11456,7 +13786,7 @@ public final class RunnerProtos {
         if (other.hasSessionId()) {
           bitField0_ |= 0x00000001;
           sessionId_ = other.sessionId_;
-          
+          onChanged();
         }
         if (!other.runId_.isEmpty()) {
           if (runId_.isEmpty()) {
@@ -11466,18 +13796,19 @@ public final class RunnerProtos {
             ensureRunIdIsMutable();
             runId_.addAll(other.runId_);
           }
-          
+          onChanged();
         }
         if (other.hasLocaleId()) {
           bitField0_ |= 0x00000004;
           localeId_ = other.localeId_;
-          
+          onChanged();
         }
         if (other.hasDistance()) {
           bitField0_ |= 0x00000008;
           distance_ = other.distance_;
-          
+          onChanged();
         }
+        this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
 
@@ -11552,7 +13883,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         sessionId_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -11561,7 +13892,7 @@ public final class RunnerProtos {
       public Builder clearSessionId() {
         bitField0_ = (bitField0_ & ~0x00000001);
         sessionId_ = getDefaultInstance().getSessionId();
-        
+        onChanged();
         return this;
       }
       /**
@@ -11574,7 +13905,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000001;
         sessionId_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -11612,7 +13943,7 @@ public final class RunnerProtos {
           int index, int value) {
         ensureRunIdIsMutable();
         runId_.set(index, value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -11621,7 +13952,7 @@ public final class RunnerProtos {
       public Builder addRunId(int value) {
         ensureRunIdIsMutable();
         runId_.add(value);
-        
+        onChanged();
         return this;
       }
       /**
@@ -11631,7 +13962,7 @@ public final class RunnerProtos {
           java.lang.Iterable<? extends java.lang.Integer> values) {
         ensureRunIdIsMutable();
         super.addAll(values, runId_);
-        
+        onChanged();
         return this;
       }
       /**
@@ -11640,7 +13971,7 @@ public final class RunnerProtos {
       public Builder clearRunId() {
         runId_ = java.util.Collections.emptyList();
         bitField0_ = (bitField0_ & ~0x00000002);
-        
+        onChanged();
         return this;
       }
 
@@ -11692,7 +14023,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000004;
         localeId_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -11701,7 +14032,7 @@ public final class RunnerProtos {
       public Builder clearLocaleId() {
         bitField0_ = (bitField0_ & ~0x00000004);
         localeId_ = getDefaultInstance().getLocaleId();
-        
+        onChanged();
         return this;
       }
       /**
@@ -11714,7 +14045,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000004;
         localeId_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -11766,7 +14097,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000008;
         distance_ = value;
-        
+        onChanged();
         return this;
       }
       /**
@@ -11775,7 +14106,7 @@ public final class RunnerProtos {
       public Builder clearDistance() {
         bitField0_ = (bitField0_ & ~0x00000008);
         distance_ = getDefaultInstance().getDistance();
-        
+        onChanged();
         return this;
       }
       /**
@@ -11788,7 +14119,7 @@ public final class RunnerProtos {
   }
   bitField0_ |= 0x00000008;
         distance_ = value;
-        
+        onChanged();
         return this;
       }
 
@@ -11803,8 +14134,789 @@ public final class RunnerProtos {
     // @@protoc_insertion_point(class_scope:Runner.RunRequest)
   }
 
+  public interface RPCOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
 
+    // required string method = 1;
+    /**
+     * <code>required string method = 1;</code>
+     */
+    boolean hasMethod();
+    /**
+     * <code>required string method = 1;</code>
+     */
+    java.lang.String getMethod();
+    /**
+     * <code>required string method = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getMethodBytes();
+
+    // required bytes payload = 2;
+    /**
+     * <code>required bytes payload = 2;</code>
+     */
+    boolean hasPayload();
+    /**
+     * <code>required bytes payload = 2;</code>
+     */
+    com.google.protobuf.ByteString getPayload();
+  }
+  /**
+   * Protobuf type {@code Runner.RPC}
+   */
+  public static final class RPC extends
+      com.google.protobuf.GeneratedMessage
+      implements RPCOrBuilder {
+    // Use RPC.newBuilder() to construct.
+    private RPC(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private RPC(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final RPC defaultInstance;
+    public static RPC getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public RPC getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private RPC(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              method_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              payload_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RPC_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RPC_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              com.hopped.running.protobuf.RunnerProtos.RPC.class, com.hopped.running.protobuf.RunnerProtos.RPC.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<RPC> PARSER =
+        new com.google.protobuf.AbstractParser<RPC>() {
+      public RPC parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new RPC(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<RPC> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required string method = 1;
+    public static final int METHOD_FIELD_NUMBER = 1;
+    private java.lang.Object method_;
+    /**
+     * <code>required string method = 1;</code>
+     */
+    public boolean hasMethod() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string method = 1;</code>
+     */
+    public java.lang.String getMethod() {
+      java.lang.Object ref = method_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          method_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string method = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getMethodBytes() {
+      java.lang.Object ref = method_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        method_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    // required bytes payload = 2;
+    public static final int PAYLOAD_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString payload_;
+    /**
+     * <code>required bytes payload = 2;</code>
+     */
+    public boolean hasPayload() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    /**
+     * <code>required bytes payload = 2;</code>
+     */
+    public com.google.protobuf.ByteString getPayload() {
+      return payload_;
+    }
+
+    private void initFields() {
+      method_ = "";
+      payload_ = com.google.protobuf.ByteString.EMPTY;
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasMethod()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPayload()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getMethodBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, payload_);
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getMethodBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, payload_);
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static com.hopped.running.protobuf.RunnerProtos.RPC parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(com.hopped.running.protobuf.RunnerProtos.RPC prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Runner.RPC}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements com.hopped.running.protobuf.RunnerProtos.RPCOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RPC_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RPC_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                com.hopped.running.protobuf.RunnerProtos.RPC.class, com.hopped.running.protobuf.RunnerProtos.RPC.Builder.class);
+      }
+
+      // Construct using com.hopped.running.protobuf.RunnerProtos.RPC.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        method_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        payload_ = com.google.protobuf.ByteString.EMPTY;
+        bitField0_ = (bitField0_ & ~0x00000002);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return com.hopped.running.protobuf.RunnerProtos.internal_static_Runner_RPC_descriptor;
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.RPC getDefaultInstanceForType() {
+        return com.hopped.running.protobuf.RunnerProtos.RPC.getDefaultInstance();
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.RPC build() {
+        com.hopped.running.protobuf.RunnerProtos.RPC result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public com.hopped.running.protobuf.RunnerProtos.RPC buildPartial() {
+        com.hopped.running.protobuf.RunnerProtos.RPC result = new com.hopped.running.protobuf.RunnerProtos.RPC(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.method_ = method_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.payload_ = payload_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof com.hopped.running.protobuf.RunnerProtos.RPC) {
+          return mergeFrom((com.hopped.running.protobuf.RunnerProtos.RPC)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(com.hopped.running.protobuf.RunnerProtos.RPC other) {
+        if (other == com.hopped.running.protobuf.RunnerProtos.RPC.getDefaultInstance()) return this;
+        if (other.hasMethod()) {
+          bitField0_ |= 0x00000001;
+          method_ = other.method_;
+          onChanged();
+        }
+        if (other.hasPayload()) {
+          setPayload(other.getPayload());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasMethod()) {
+          
+          return false;
+        }
+        if (!hasPayload()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.hopped.running.protobuf.RunnerProtos.RPC parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (com.hopped.running.protobuf.RunnerProtos.RPC) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required string method = 1;
+      private java.lang.Object method_ = "";
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public boolean hasMethod() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public java.lang.String getMethod() {
+        java.lang.Object ref = method_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          method_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getMethodBytes() {
+        java.lang.Object ref = method_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          method_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public Builder setMethod(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        method_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public Builder clearMethod() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        method_ = getDefaultInstance().getMethod();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string method = 1;</code>
+       */
+      public Builder setMethodBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        method_ = value;
+        onChanged();
+        return this;
+      }
+
+      // required bytes payload = 2;
+      private com.google.protobuf.ByteString payload_ = com.google.protobuf.ByteString.EMPTY;
+      /**
+       * <code>required bytes payload = 2;</code>
+       */
+      public boolean hasPayload() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      /**
+       * <code>required bytes payload = 2;</code>
+       */
+      public com.google.protobuf.ByteString getPayload() {
+        return payload_;
+      }
+      /**
+       * <code>required bytes payload = 2;</code>
+       */
+      public Builder setPayload(com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        payload_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required bytes payload = 2;</code>
+       */
+      public Builder clearPayload() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        payload_ = getDefaultInstance().getPayload();
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Runner.RPC)
+    }
+
+    static {
+      defaultInstance = new RPC(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:Runner.RPC)
+  }
+
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_Pair_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_Pair_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_ProtoMap_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_ProtoMap_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_Error_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_Error_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_RunObject_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_RunObject_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_User_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_User_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_TrackPoint_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_TrackPoint_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_Track_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_Track_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_Run_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_Run_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_RunList_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_RunList_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_AuthRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_AuthRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_AuthResponse_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_AuthResponse_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_RunRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_RunRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Runner_RPC_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Runner_RPC_fieldAccessorTable;
+
+  public static com.google.protobuf.Descriptors.FileDescriptor
+      getDescriptor() {
+    return descriptor;
+  }
+  private static com.google.protobuf.Descriptors.FileDescriptor
+      descriptor;
   static {
+    java.lang.String[] descriptorData = {
+      "\n\014Runner.proto\022\006Runner\"\"\n\004Pair\022\013\n\003key\030\001 " +
+      "\001(\t\022\r\n\005value\030\002 \001(\t\"&\n\010ProtoMap\022\032\n\004item\030\001" +
+      " \003(\0132\014.Runner.Pair\"0\n\005Error\022\021\n\terrorCode" +
+      "\030\001 \001(\005\022\024\n\014errorMessage\030\002 \001(\t\"J\n\tRunObjec" +
+      "t\022\r\n\005alias\030\001 \001(\t\022\020\n\010objectId\030\002 \001(\005\022\034\n\005er" +
+      "ror\030\003 \001(\0132\r.Runner.Error\"\203\004\n\004User\022\r\n\005ali" +
+      "as\030\001 \001(\t\022\n\n\002id\030\002 \001(\005\022\021\n\tbirthdate\030\003 \001(\005\022" +
+      "\031\n\021countLoginFailure\030\004 \001(\005\022\024\n\014creationDa" +
+      "te\030\005 \001(\005\022\020\n\010distance\030\006 \001(\t\022\r\n\005eMail\030\007 \001(" +
+      "\t\022\021\n\tfirstName\030\010 \001(\t\022\016\n\006gender\030\t \001(\t\022\016\n\006",
+      "height\030\n \001(\005\022\r\n\005image\030\013 \001(\t\022\027\n\017isEmailVe" +
+      "rified\030\014 \001(\010\022\020\n\010isPublic\030\r \001(\010\022\022\n\nlangua" +
+      "geId\030\016 \001(\005\022\020\n\010lastName\030\017 \001(\t\022\020\n\010localeID" +
+      "\030\020 \001(\t\022\r\n\005maxHr\030\021 \001(\005\022\020\n\010password\030\022 \001(\t\022" +
+      ")\n\017privacySettings\030\023 \001(\0132\020.Runner.ProtoM" +
+      "ap\022\022\n\npublicPath\030\024 \001(\t\022\021\n\trestingHr\030\025 \001(" +
+      "\005\022\020\n\010timezone\030\026 \001(\001\022#\n\010userRole\030\027 \001(\0132\021." +
+      "Runner.RunObject\022\016\n\006weight\030\030 \001(\005\022\034\n\005erro" +
+      "r\030\031 \001(\0132\r.Runner.Error\"\242\001\n\nTrackPoint\022\026\n" +
+      "\016altitudeMeters\030\001 \001(\001\022\026\n\016distanceMeters\030",
+      "\002 \001(\001\022\024\n\014heartRateBpm\030\003 \001(\005\022\"\n\010position\030" +
+      "\004 \001(\0132\020.Runner.ProtoMap\022\014\n\004time\030\005 \001(\005\022\034\n" +
+      "\005error\030\006 \001(\0132\r.Runner.Error\"K\n\005Track\022$\n\010" +
+      "tpObject\030\001 \003(\0132\022.Runner.TrackPoint\022\034\n\005er" +
+      "ror\030\002 \001(\0132\r.Runner.Error\"\331\003\n\003Run\022\r\n\005alia" +
+      "s\030\001 \001(\t\022\n\n\002id\030\002 \001(\005\022&\n\013objectClass\030\003 \001(\013" +
+      "2\021.Runner.RunObject\022\033\n\023averageHeartRateB" +
+      "pm\030\004 \001(\005\022%\n\013averagePace\030\005 \001(\0132\020.Runner.P" +
+      "rotoMap\022&\n\014averageSpeed\030\006 \001(\0132\020.Runner.P" +
+      "rotoMap\022\020\n\010calories\030\007 \001(\005\022\014\n\004date\030\010 \001(\005\022",
+      "\023\n\013description\030\t \001(\t\022\026\n\016distanceMeters\030\n" +
+      " \001(\001\022\021\n\tisVisible\030\013 \001(\010\022\024\n\014maximumSpeed\030" +
+      "\014 \001(\001\022\033\n\023maximumHeartRateBpm\030\r \001(\005\022\017\n\007no" +
+      "table\030\016 \003(\t\022\022\n\npublicPath\030\017 \001(\t\022\017\n\007tagLi" +
+      "st\030\020 \003(\t\022\030\n\020totalTimeSeconds\030\021 \001(\005\022\"\n\013tr" +
+      "ackObject\030\022 \001(\0132\r.Runner.Track\022\034\n\005error\030" +
+      "\023 \001(\0132\r.Runner.Error\"B\n\007RunList\022\031\n\004runs\030" +
+      "\001 \003(\0132\013.Runner.Run\022\034\n\005error\030\002 \001(\0132\r.Runn" +
+      "er.Error\"1\n\013AuthRequest\022\020\n\010username\030\001 \001(" +
+      "\t\022\020\n\010password\030\002 \001(\t\"s\n\014AuthResponse\022\021\n\ts",
+      "essionId\030\001 \001(\t\022\032\n\004user\030\002 \001(\0132\014.Runner.Us" +
+      "er\022\026\n\016sessionTimeout\030\003 \001(\005\022\034\n\005error\030\004 \001(" +
+      "\0132\r.Runner.Error\"R\n\nRunRequest\022\021\n\tsessio" +
+      "nId\030\001 \001(\t\022\r\n\005runId\030\002 \003(\005\022\020\n\010localeId\030\003 \001" +
+      "(\t\022\020\n\010distance\030\004 \001(\t\"&\n\003RPC\022\016\n\006method\030\001 " +
+      "\002(\t\022\017\n\007payload\030\002 \002(\014B-\n\033com.hopped.runni" +
+      "ng.protobufB\014RunnerProtosH\001"
+    };
+    com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
+      new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
+        public com.google.protobuf.ExtensionRegistry assignDescriptors(
+            com.google.protobuf.Descriptors.FileDescriptor root) {
+          descriptor = root;
+          internal_static_Runner_Pair_descriptor =
+            getDescriptor().getMessageTypes().get(0);
+          internal_static_Runner_Pair_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_Pair_descriptor,
+              new java.lang.String[] { "Key", "Value", });
+          internal_static_Runner_ProtoMap_descriptor =
+            getDescriptor().getMessageTypes().get(1);
+          internal_static_Runner_ProtoMap_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_ProtoMap_descriptor,
+              new java.lang.String[] { "Item", });
+          internal_static_Runner_Error_descriptor =
+            getDescriptor().getMessageTypes().get(2);
+          internal_static_Runner_Error_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_Error_descriptor,
+              new java.lang.String[] { "ErrorCode", "ErrorMessage", });
+          internal_static_Runner_RunObject_descriptor =
+            getDescriptor().getMessageTypes().get(3);
+          internal_static_Runner_RunObject_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_RunObject_descriptor,
+              new java.lang.String[] { "Alias", "ObjectId", "Error", });
+          internal_static_Runner_User_descriptor =
+            getDescriptor().getMessageTypes().get(4);
+          internal_static_Runner_User_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_User_descriptor,
+              new java.lang.String[] { "Alias", "Id", "Birthdate", "CountLoginFailure", "CreationDate", "Distance", "EMail", "FirstName", "Gender", "Height", "Image", "IsEmailVerified", "IsPublic", "LanguageId", "LastName", "LocaleID", "MaxHr", "Password", "PrivacySettings", "PublicPath", "RestingHr", "Timezone", "UserRole", "Weight", "Error", });
+          internal_static_Runner_TrackPoint_descriptor =
+            getDescriptor().getMessageTypes().get(5);
+          internal_static_Runner_TrackPoint_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_TrackPoint_descriptor,
+              new java.lang.String[] { "AltitudeMeters", "DistanceMeters", "HeartRateBpm", "Position", "Time", "Error", });
+          internal_static_Runner_Track_descriptor =
+            getDescriptor().getMessageTypes().get(6);
+          internal_static_Runner_Track_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_Track_descriptor,
+              new java.lang.String[] { "TpObject", "Error", });
+          internal_static_Runner_Run_descriptor =
+            getDescriptor().getMessageTypes().get(7);
+          internal_static_Runner_Run_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_Run_descriptor,
+              new java.lang.String[] { "Alias", "Id", "ObjectClass", "AverageHeartRateBpm", "AveragePace", "AverageSpeed", "Calories", "Date", "Description", "DistanceMeters", "IsVisible", "MaximumSpeed", "MaximumHeartRateBpm", "Notable", "PublicPath", "TagList", "TotalTimeSeconds", "TrackObject", "Error", });
+          internal_static_Runner_RunList_descriptor =
+            getDescriptor().getMessageTypes().get(8);
+          internal_static_Runner_RunList_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_RunList_descriptor,
+              new java.lang.String[] { "Runs", "Error", });
+          internal_static_Runner_AuthRequest_descriptor =
+            getDescriptor().getMessageTypes().get(9);
+          internal_static_Runner_AuthRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_AuthRequest_descriptor,
+              new java.lang.String[] { "Username", "Password", });
+          internal_static_Runner_AuthResponse_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_Runner_AuthResponse_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_AuthResponse_descriptor,
+              new java.lang.String[] { "SessionId", "User", "SessionTimeout", "Error", });
+          internal_static_Runner_RunRequest_descriptor =
+            getDescriptor().getMessageTypes().get(11);
+          internal_static_Runner_RunRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_RunRequest_descriptor,
+              new java.lang.String[] { "SessionId", "RunId", "LocaleId", "Distance", });
+          internal_static_Runner_RPC_descriptor =
+            getDescriptor().getMessageTypes().get(12);
+          internal_static_Runner_RPC_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Runner_RPC_descriptor,
+              new java.lang.String[] { "Method", "Payload", });
+          return null;
+        }
+      };
+    com.google.protobuf.Descriptors.FileDescriptor
+      .internalBuildGeneratedFileFrom(descriptorData,
+        new com.google.protobuf.Descriptors.FileDescriptor[] {
+        }, assigner);
   }
 
   // @@protoc_insertion_point(outer_class_scope)

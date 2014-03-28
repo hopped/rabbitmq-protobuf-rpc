@@ -47,17 +47,27 @@ import com.rabbitmq.client.ShutdownSignalException;
  */
 public class RunnerServer {
 
-    public static final String RPC_QUEUE_NAME = "runningRabbit";
-
     final static Logger logger =
             LoggerFactory.getLogger(RunnerServer.class);
 
     private final UserDatabase userDatabase = new UserDatabase();
     private final RunnerSession session = new RunnerSession();
+    private final String queueName;
+    private final String host;
 
     private Connection connection;
     private Channel channel;
     private QueueingConsumer consumer;
+
+    /**
+     * 
+     * @param host
+     * @param queueName
+     */
+    public RunnerServer(final String host, final String queueName) {
+        this.queueName = queueName;
+        this.host = host;
+    }
 
     /**
      * 
@@ -66,15 +76,15 @@ public class RunnerServer {
      */
     public RunnerServer init() throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
+        factory.setHost(host);
 
         connection = factory.newConnection();
         channel = connection.createChannel();
-        channel.queueDeclare(RPC_QUEUE_NAME, false, false, false, null);
         channel.basicQos(1);
+        channel.queueDeclare(queueName, false, false, false, null);
 
         consumer = new QueueingConsumer(channel);
-        channel.basicConsume(RPC_QUEUE_NAME, false, consumer);
+        channel.basicConsume(queueName, false, consumer);
 
         logger.info(" [x] Handling RPC requests ...");
 
@@ -111,6 +121,8 @@ public class RunnerServer {
                 byte[] payload = getResponse(delivery);
                 channel.basicPublish("", props.getReplyTo(), replyProps,
                         payload);
+
+                logger.info("Done.");
             } catch (ShutdownSignalException | ConsumerCancelledException
                     | InterruptedException | IOException e) {
                 logger.error(e.getMessage());
@@ -156,7 +168,7 @@ public class RunnerServer {
      * @param args
      */
     public static void main(String[] args) {
-        RunnerServer server = new RunnerServer();
+        RunnerServer server = new RunnerServer("localhost", "runningRabbit");
         try {
             server.init().consume();
         } catch (IOException e) {

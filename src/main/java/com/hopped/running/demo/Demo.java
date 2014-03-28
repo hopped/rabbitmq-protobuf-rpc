@@ -28,9 +28,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
-import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
-import com.hopped.running.protobuf.RunnerProtos.Error;
-import com.hopped.running.protobuf.RunnerProtos.User;
 import com.hopped.running.rabbitmq.RunnerClient;
 import com.rabbitmq.client.ConnectionFactory;
 
@@ -46,11 +43,10 @@ public class Demo {
 
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
-        final String requestQueueName = "runningRabbit";
 
         /* AUTHENTICATION */
 
-        RunnerClient client = new RunnerClient(factory, requestQueueName);
+        RunnerClient client = new RunnerClient(factory, "runningRabbit");
         try {
             client.init();
         } catch (IOException ioe) {
@@ -59,24 +55,22 @@ public class Demo {
         }
 
         AuthRequest authRequest = AuthRequest.newBuilder()
-            .setUsername("hopped")
-            .setPassword("is_fantastic")
-            .build();
+                .setUsername("hopped")
+                .setPassword("is_fantastic")
+                .build();
         logger.info("Logging in 'hoppe' ...");
 
-        AuthResponse response = client.login(authRequest);
-        Error error = response.getError();
-        if (error.getErrorCode() > 0) {
-            logger.error(error.getErrorMessage());
-        } else {
-            User user = response.getUser();
-            logger.info("  User 'hoppe' logged in.");
-            logger.info("  Hello " + user.getFirstName());
-        }
+        // AuthResponse response = client.login(authRequest);
+        // Error error = response.getError();
+        // if (error.getErrorCode() > 0) {
+        // logger.error(error.getErrorMessage());
+        // } else {
+        // User user = response.getUser();
+        // logger.info("  User 'hoppe' logged in.");
+        // logger.info("  Hello " + user.getAlias());
+        // }
 
         /* TODO: GET LIST OF RUNS */
-
-
 
         client.close();
         logger.info("Done.");

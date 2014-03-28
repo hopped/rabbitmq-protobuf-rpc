@@ -1,0 +1,100 @@
+
+Ë
+Runner.protoRunner""
+Pair
+key (	
+value (	"&
+ProtoMap
+item (2.Runner.Pair"0
+Error
+	errorCode (
+errorMessage (	"J
+	RunObject
+alias (	
+objectId (
+error (2.Runner.Error"ƒ
+User
+alias (	
+
+id (
+	birthdate (
+countLoginFailure (
+creationDate (
+distance (	
+eMail (	
+	firstName (	
+gender	 (	
+height
+ (
+image (	
+isEmailVerified (
+isPublic (
+
+languageId (
+lastName (	
+localeID (	
+maxHr (
+password (	)
+privacySettings (2.Runner.ProtoMap
+
+publicPath (	
+	restingHr (
+timezone (#
+userRole (2.Runner.RunObject
+weight (
+error (2.Runner.Error"¢
+
+TrackPoint
+altitudeMeters (
+distanceMeters (
+heartRateBpm ("
+position (2.Runner.ProtoMap
+time (
+error (2.Runner.Error"K
+Track$
+tpObject (2.Runner.TrackPoint
+error (2.Runner.Error"Ù
+Run
+alias (	
+
+id (&
+objectClass (2.Runner.RunObject
+averageHeartRateBpm (%
+averagePace (2.Runner.ProtoMap&
+averageSpeed (2.Runner.ProtoMap
+calories (
+date (
+description	 (	
+distanceMeters
+ (
+	isVisible (
+maximumSpeed (
+maximumHeartRateBpm (
+notable (	
+
+publicPath (	
+tagList (	
+totalTimeSeconds ("
+trackObject (2.Runner.Track
+error (2.Runner.Error"B
+RunList
+runs (2.Runner.Run
+error (2.Runner.Error"1
+AuthRequest
+username (	
+password (	"s
+AuthResponse
+	sessionId (	
+user (2.Runner.User
+sessionTimeout (
+error (2.Runner.Error"R
+
+RunRequest
+	sessionId (	
+runId (
+localeId (	
+distance (	"&
+RPC
+method (	
+payload (B-
+com.hopped.running.protobufBRunnerProtosH

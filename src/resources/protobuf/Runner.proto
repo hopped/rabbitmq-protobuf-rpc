@@ -2,7 +2,7 @@ package Runner;
 
 option java_package = "com.hopped.running.protobuf";
 option java_outer_classname = "RunnerProtos";
-option optimize_for = LITE_RUNTIME;
+option optimize_for = SPEED;
 
 message Pair {
     optional string key = 1;
@@ -111,3 +111,14 @@ message RunRequest {
     optional string localeId = 3;
     optional string distance = 4;
 }
+
+message RPC {
+    required string method = 1;
+    required bytes payload = 2;
+}
+
+message Ack {
+    required bool success = 1;
+    optional Error error = 2;
+}
+
