@@ -30,7 +30,6 @@ import java.lang.reflect.Proxy;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.Message;
 import com.hopped.running.rabbitmq.rpc.RPCMessage;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
@@ -142,15 +141,18 @@ public class RunnerClient implements InvocationHandler {
             throws Throwable {
         logger.info("RunnerClient invoke: " + method.getName());
 
-        Message msg = (Message) args[0];
+        // FIXME: args[0] is unsafe
         RPCMessage invoker = new RPCMessage()
                 .setMethod(method.getName())
-                .setRequestObject(msg);
+                .setRequestObject(args[0]);
 
         byte[] response = basicCall(invoker.toByteArray());
 
         String klassName = method.getReturnType().getName();
+        // FIXME: ClassNotFound? MethodNotFound? ReturnType is void?
         Class<?> klass = this.getClass().getClassLoader().loadClass(klassName);
+        // TODO: Although this class seems to be quiet generic, the next line
+        // is limited to Protobuf messages!
         Method parseFrom = klass.getMethod("parseFrom", byte[].class);
 
         return parseFrom.invoke(null, response);
