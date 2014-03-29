@@ -31,13 +31,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 
-import com.google.protobuf.Message;
-
 /**
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
  * 
  */
-public class Invoker implements Externalizable {
+public class RPCMessage implements Externalizable {
 
     /**
      * 
@@ -45,9 +43,9 @@ public class Invoker implements Externalizable {
     private static final long serialVersionUID = -5186843158810530946L;
 
     private String method;
-    private Message requestMessage;
+    private Object requestObject;
 
-    public Invoker() {
+    public RPCMessage() {
 
     }
 
@@ -55,7 +53,7 @@ public class Invoker implements Externalizable {
      * @param method
      *            the method to set
      */
-    public Invoker setMethod(String method) {
+    public RPCMessage setMethod(String method) {
         this.method = method;
         return this;
     }
@@ -65,8 +63,8 @@ public class Invoker implements Externalizable {
      * @param requestMessage
      * @return
      */
-    public Invoker setRequestMessage(Message request) {
-        this.requestMessage = request;
+    public RPCMessage setRequestObject(Object request) {
+        this.requestObject = request;
         return this;
     }
 
@@ -80,8 +78,8 @@ public class Invoker implements Externalizable {
     /**
      * @return the parameterTypes
      */
-    public Message getRequestMessage() {
-        return requestMessage;
+    public Object getRequestObject() {
+        return requestObject;
     }
 
     /*
@@ -92,7 +90,7 @@ public class Invoker implements Externalizable {
     @Override
     public void writeExternal(ObjectOutput out) throws IOException {
         out.writeObject(method);
-        out.writeObject(requestMessage);
+        out.writeObject(requestObject);
     }
 
     /*
@@ -104,7 +102,7 @@ public class Invoker implements Externalizable {
     public void readExternal(ObjectInput in) throws IOException,
             ClassNotFoundException {
         method = (String) in.readObject();
-        requestMessage = (Message) in.readObject();
+        requestObject = in.readObject();
     }
 
     /**
@@ -114,11 +112,11 @@ public class Invoker implements Externalizable {
      * @throws IOException
      * @throws ClassNotFoundException
      */
-    public static Invoker parseFrom(byte[] buffer) throws IOException,
+    public static RPCMessage parseFrom(byte[] buffer) throws IOException,
             ClassNotFoundException {
         ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
         ObjectInputStream ois = new ObjectInputStream(bais);
-        Invoker response = (Invoker) ois.readObject();
+        RPCMessage response = (RPCMessage) ois.readObject();
         ois.close();
         return response;
     }

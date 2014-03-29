@@ -36,7 +36,7 @@ import com.hopped.running.protobuf.RunnerProtos.Ack;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
 import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
 import com.hopped.running.protobuf.RunnerProtos.User;
-import com.hopped.running.rabbitmq.rpc.Invoker;
+import com.hopped.running.rabbitmq.rpc.RPCMessage;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
@@ -148,9 +148,9 @@ public class RunnerClient implements InvocationHandler {
         logger.info("RunnerClient invoke: " + method.getName());
 
         Message msg = (Message) args[0];
-        Invoker invoker = new Invoker()
+        RPCMessage invoker = new RPCMessage()
                 .setMethod(method.getName())
-                .setRequestMessage(msg);
+                .setRequestObject(msg);
 
         byte[] response = basicCall(invoker.toByteArray());
 

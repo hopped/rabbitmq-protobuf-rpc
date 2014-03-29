@@ -77,9 +77,9 @@ public class RPCServer extends ARPCServer<RPCServer> {
         logger.info("RunnerRPCServer::processRequest");
 
         try {
-            Invoker invoker = Invoker.parseFrom(delivery.getBody());
+            RPCMessage invoker = RPCMessage.parseFrom(delivery.getBody());
             String name = invoker.getMethod();
-            Message request = invoker.getRequestMessage();
+            Message request = (Message) invoker.getRequestObject();
             Method method = protocol.getMethod(name, request.getClass());
 
             Message result = (Message) method.invoke(instance, request);
