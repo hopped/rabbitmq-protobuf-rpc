@@ -28,7 +28,6 @@ import java.lang.reflect.Method;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.Descriptors.DescriptorValidationException;
 import com.google.protobuf.Message;
 import com.hopped.running.demo.IRunnerService;
 import com.hopped.running.demo.RunnerServiceImpl;
@@ -41,17 +40,17 @@ import com.rabbitmq.client.QueueingConsumer.Delivery;
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
  * 
  */
-public class RPCServer extends ARPCServer<RPCServer> {
+public class ProtobufRPCServer extends ARPCServer<ProtobufRPCServer> {
 
     private final static Logger logger = LoggerFactory
-            .getLogger(RPCServer.class);
+            .getLogger(ProtobufRPCServer.class);
 
     /**
      * 
      * @param channel
      * @param queueName
      */
-    public RPCServer(Channel channel, String queueName) {
+    public ProtobufRPCServer(Channel channel, String queueName) {
         super(channel, queueName);
     }
 
@@ -61,7 +60,7 @@ public class RPCServer extends ARPCServer<RPCServer> {
      * @see com.hopped.running.rabbitmq.rpc.ARPCServer#self()
      */
     @Override
-    public RPCServer self() {
+    public ProtobufRPCServer self() {
         return this;
     }
 
@@ -95,7 +94,6 @@ public class RPCServer extends ARPCServer<RPCServer> {
      * 
      * @param args
      * @throws IOException
-     * @throws DescriptorValidationException
      */
     public static void main(String[] args) throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
@@ -107,7 +105,7 @@ public class RPCServer extends ARPCServer<RPCServer> {
         channel.basicQos(1);
         channel.queueDeclare(queueName, false, false, false, null);
 
-        RPCServer server = new RPCServer(channel, queueName)
+        ProtobufRPCServer server = new ProtobufRPCServer(channel, queueName)
                 .init()
                 .setInstance(new RunnerServiceImpl())
                 .setProtocol(IRunnerService.class);
