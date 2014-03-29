@@ -22,22 +22,14 @@
  */
 package com.hopped.running.rabbitmq;
 
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
-import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
-import com.google.protobuf.Descriptors.Descriptor;
-import com.google.protobuf.Descriptors.DescriptorValidationException;
-import com.google.protobuf.Descriptors.FileDescriptor;
 import com.google.protobuf.Message;
 import com.hopped.running.demo.IRunnerService;
 import com.hopped.running.protobuf.RunnerProtos.Ack;
@@ -61,7 +53,6 @@ public class RunnerClient implements InvocationHandler {
     final static Logger logger =
             LoggerFactory.getLogger(RunnerClient.class);
 
-    private Map<String, String> mapping;
     private Channel channel;
     private Connection connection;
     private final ConnectionFactory factory;
@@ -88,32 +79,14 @@ public class RunnerClient implements InvocationHandler {
 
     /**
      * @throws IOException
-     * @throws DescriptorValidationException
      */
-    public RunnerClient init() throws IOException,
-            DescriptorValidationException {
+    public RunnerClient init() throws IOException {
         connection = factory.newConnection();
         channel = connection.createChannel();
         replyQueueName = channel.queueDeclare().getQueue();
         consumer = new QueueingConsumer(channel);
         channel.basicConsume(replyQueueName, true, consumer);
 
-        FileDescriptorSet descriptorSet = FileDescriptorSet
-                .parseFrom(
-                new FileInputStream("src/resources/protobuf/Runner.desc"));
-
-        mapping = new HashMap<String, String>();
-        for (FileDescriptorProto fdp : descriptorSet.getFileList()) {
-            FileDescriptor fd = FileDescriptor.buildFrom(fdp,
-                    new FileDescriptor[] {});
-
-            for (Descriptor descriptor : fd.getMessageTypes()) {
-                String className = fdp.getOptions().getJavaPackage() + "."
-                        + fdp.getOptions().getJavaOuterClassname() + "$"
-                        + descriptor.getName();
-                mapping.put(descriptor.getFullName(), className);
-            }
-        }
         return this;
     }
 
@@ -196,8 +169,7 @@ public class RunnerClient implements InvocationHandler {
         return requestQueueName;
     }
 
-    public static void main(final String... strings) throws IOException,
-            DescriptorValidationException {
+    public static void main(final String... strings) throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
