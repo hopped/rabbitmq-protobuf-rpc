@@ -22,23 +22,14 @@
  */
 package com.hopped.running.rabbitmq.rpc;
 
-import java.lang.reflect.Method;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import com.google.protobuf.Message;
+import com.google.protobuf.MessageLite;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 /**
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
  * 
  */
 public class ProtobufRPCServer extends ARPCServer<ProtobufRPCServer> {
-
-    private final static Logger logger = LoggerFactory
-            .getLogger(ProtobufRPCServer.class);
 
     /**
      * 
@@ -63,26 +54,13 @@ public class ProtobufRPCServer extends ARPCServer<ProtobufRPCServer> {
      * (non-Javadoc)
      * 
      * @see
-     * com.hopped.running.rabbitmq.ARunnerRPCServer#processRequest(com.rabbitmq
-     * .client.QueueingConsumer.Delivery)
+     * com.hopped.running.rabbitmq.rpc.ARPCServer#objectToByteArray(java.lang
+     * .Object)
      */
     @Override
-    public byte[] processRequest(Delivery delivery) {
-        logger.info("RunnerRPCServer::processRequest");
-
-        try {
-            RPCMessage invoker = RPCMessage.parseFrom(delivery.getBody());
-            String name = invoker.getMethod();
-            Message request = (Message) invoker.getRequestObject();
-            Method method = protocol.getMethod(name, request.getClass());
-
-            Message result = (Message) method.invoke(instance, request);
-            return (result == null) ? null : result.toByteArray();
-        } catch (Exception e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-            return null;
-        }
+    public byte[] objectToByteArray(Object object) {
+        MessageLite msg = (MessageLite) object;
+        return msg.toByteArray();
     }
 
 }

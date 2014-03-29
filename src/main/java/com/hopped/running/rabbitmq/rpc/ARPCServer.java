@@ -23,6 +23,7 @@
 package com.hopped.running.rabbitmq.rpc;
 
 import java.io.IOException;
+import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -118,7 +119,26 @@ public abstract class ARPCServer<T extends ARPCServer<T>> {
      * @param delivery
      * @return
      */
-    public abstract byte[] processRequest(Delivery delivery);
+    public byte[] processRequest(Delivery delivery) {
+        try {
+            RPCMessage invoker = RPCMessage.parseFrom(delivery.getBody());
+            String name = invoker.getMethod();
+            Object request = invoker.getRequestObject();
+            Method method = protocol.getMethod(name, request.getClass());
+            Object result = method.invoke(instance, request);
+            return objectToByteArray(result);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    /**
+     * 
+     * @param object
+     * @return
+     */
+    public abstract byte[] objectToByteArray(Object object);
 
     /**
      * 
