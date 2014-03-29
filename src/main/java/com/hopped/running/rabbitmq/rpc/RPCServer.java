@@ -30,8 +30,8 @@ import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.Descriptors.DescriptorValidationException;
 import com.google.protobuf.Message;
-import com.hopped.running.rabbitmq.rpc.protocol.IRunnerService;
-import com.hopped.running.rabbitmq.rpc.protocol.RunnerServiceImpl;
+import com.hopped.running.demo.IRunnerService;
+import com.hopped.running.demo.RunnerServiceImpl;
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
@@ -89,29 +89,6 @@ public class RPCServer extends ARPCServer<RPCServer> {
             e.printStackTrace();
             return null;
         }
-
-        // try {
-        // RPC rpcMessage = RPC.parseFrom(delivery.getBody());
-        // Method method = null;
-        // // TODO: don't do that!
-        // for (Method m : protocol.getMethods()) {
-        // if (m.getName().equals(rpcMessage.getMethod())) {
-        // method = protocol.getMethod(rpcMessage.getMethod(),
-        // m.getParameterTypes());
-        // }
-        // }
-        // // TODO: handle null pointer exception
-        //
-        // byte[] payload = rpcMessage.getPayload().toByteArray();
-        // Object obj = ProtoDescriptionMapper.INSTANCE
-        // .objectFromByteBuffer(payload);
-        // Message message = (Message) method.invoke(instance, obj);
-        // return ProtoDescriptionMapper.INSTANCE.messageToByteBuffer(message);
-        // } catch (Exception e) {
-        // logger.error(e.getMessage());
-        // }
-
-        // should never happen
     }
 
     /**

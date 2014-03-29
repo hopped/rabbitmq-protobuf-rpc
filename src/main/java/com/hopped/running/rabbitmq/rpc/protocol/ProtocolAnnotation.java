@@ -35,7 +35,7 @@ import java.lang.annotation.Target;
 @Documented
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@interface ProtocolAnnotation {
+public @interface ProtocolAnnotation {
 
     double protocolVersion();
 

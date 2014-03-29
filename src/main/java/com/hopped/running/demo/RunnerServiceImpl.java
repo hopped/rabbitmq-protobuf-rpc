@@ -20,7 +20,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.hopped.running.rabbitmq.rpc.protocol;
+package com.hopped.running.demo;
 
 import com.hopped.running.protobuf.RunnerProtos.Ack;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
@@ -30,15 +30,24 @@ import com.hopped.running.protobuf.RunnerProtos.User;
 /**
  * @author Dennis Hoppe (hoppe.dennis@ymail.com)
  */
-@ProtocolAnnotation(protocolVersion = 1.0, serializationBy = "protobuf")
-public interface IRunnerService {
+public class RunnerServiceImpl implements IRunnerService {
 
-    public AuthResponse login(AuthRequest request);
+    /*
+     * (non-Javadoc)
+     * 
+     * @see
+     * com.hopped.running.rabbitmq.rpc.RunnerService#login(com.hopped.running
+     * .protobuf.RunnerProtos.AuthRequest)
+     */
+    @Override
+    public AuthResponse login(AuthRequest request) {
+        // TODO: remove dummy implementation
+        return AuthResponse.newBuilder().setSessionId("1234").build();
+    }
 
-    public Ack setProfile(User user);
-
-    // public void addRun(User user, Run run);
-
-    // public void getRuns(User user, Map<String, String> attributes);
-
+    @Override
+    public Ack setProfile(User user) {
+        System.out.println("server::setProfile called " + user.getAlias());
+        return Ack.newBuilder().setSuccess(true).build();
+    }
 }
