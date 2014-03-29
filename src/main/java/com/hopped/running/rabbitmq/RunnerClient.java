@@ -22,8 +22,6 @@
  */
 package com.hopped.running.rabbitmq;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.InvocationHandler;
@@ -35,7 +33,6 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.ByteString;
 import com.google.protobuf.DescriptorProtos.FileDescriptorProto;
 import com.google.protobuf.DescriptorProtos.FileDescriptorSet;
 import com.google.protobuf.Descriptors.Descriptor;
@@ -45,8 +42,8 @@ import com.google.protobuf.Message;
 import com.hopped.running.protobuf.RunnerProtos.Ack;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
 import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
-import com.hopped.running.protobuf.RunnerProtos.RPC;
 import com.hopped.running.protobuf.RunnerProtos.User;
+import com.hopped.running.rabbitmq.rpc.Invoker;
 import com.hopped.running.rabbitmq.rpc.protocol.IRunnerService;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
@@ -166,31 +163,6 @@ public class RunnerClient implements InvocationHandler {
         }
     }
 
-    public Object protobufCall(String method, byte[] payload)
-            throws Exception {
-        ByteString data = ByteString.copyFrom(payload);
-        RPC rpc = RPC.newBuilder().setMethod(method).setPayload(data).build();
-
-        byte[] response = basicCall(rpc.toByteArray());
-        return objectFromByteBuffer(response);
-    }
-
-    public Object objectFromByteBuffer(byte[] buffer) throws Exception {
-        ByteArrayInputStream bais = new ByteArrayInputStream(buffer);
-        byte[] name = new byte[bais.read()];
-        bais.read(name); // TODO: Read fully??
-        // Get the class name associated with the descriptor name
-        logger.info("objectFrom: " + new String(name, "UTF-8"));
-        String className = mapping.get(new String(name, "UTF-8"));
-        Class<?> clazz = Thread.currentThread()
-                .getContextClassLoader()
-                .loadClass(className);
-        Method parseFromMethod = clazz.getMethod("parseFrom", byte[].class);
-        byte[] message = new byte[bais.read()];
-        bais.read(message); // TODO: Read fully??
-        return parseFromMethod.invoke(null, message);
-    }
-
     /*
      * (non-Javadoc)
      * 
@@ -200,22 +172,20 @@ public class RunnerClient implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args)
             throws Throwable {
-        logger.info("RunnerClientInvocationHandler invoke: " +
-                method.getName());
-        logger.info("RunnerClientInvocationHandler args: " + args[0]);
+        logger.info("RunnerClient invoke: " + method.getName());
 
-        Message message = (Message) args[0];
-        byte[] name = message.getDescriptorForType().getFullName()
-                .getBytes("UTF-8");
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        baos.write(name.length); // TODO: length as int and not byte
-        baos.write(name);
-        byte[] messageBytes = message.toByteArray();
-        baos.write(messageBytes.length); // TODO: Length as int and not byte
-        baos.write(messageBytes);
-        baos.flush();
+        Message msg = (Message) args[0];
+        Invoker invoker = new Invoker()
+                .setMethod(method.getName())
+                .setRequestMessage(msg);
 
-        return protobufCall(method.getName(), baos.toByteArray());
+        byte[] response = basicCall(invoker.toByteArray());
+
+        String klassName = method.getReturnType().getName();
+        Class<?> klass = this.getClass().getClassLoader().loadClass(klassName);
+        Method parseFrom = klass.getMethod("parseFrom", byte[].class);
+
+        return parseFrom.invoke(null, response);
     }
 
     public final ConnectionFactory getConnectionFactory() {
@@ -231,26 +201,15 @@ public class RunnerClient implements InvocationHandler {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        String name = "Dennis";
-        byte[] original = name.getBytes();
-        baos.write(original.length);
-        baos.write(original);
-        ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-        byte[] data = new byte[bais.read()];
-        bais.read(data);
-        // bais.read(ress, 0, length);
-        String result = new String(data, "UTF-8");
-        System.out.println("recovered " + result);
-
-        AuthRequest request = AuthRequest.newBuilder().setUsername("hopped")
+        AuthRequest request = AuthRequest.newBuilder()
+                .setUsername("hopped")
                 .build();
 
         RunnerClient client = new RunnerClient(factory, "runningRabbit").init();
         IRunnerService service =
                 (IRunnerService) client.createProxy(IRunnerService.class);
         AuthResponse res = service.login(request);
-        System.out.println("finally: " + res.getSessionId());
+        System.out.println("Returned sessionId: " + res.getSessionId());
 
         Ack ack = service.setProfile(User.newBuilder().setAlias("hopped")
                 .build());

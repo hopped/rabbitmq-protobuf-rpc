@@ -2,6 +2,7 @@ package Runner;
 
 option java_package = "com.hopped.running.protobuf";
 option java_outer_classname = "RunnerProtos";
+option java_generic_services = true;
 option optimize_for = SPEED;
 
 message Pair {
@@ -110,6 +111,10 @@ message RunRequest {
     repeated int32 runId = 2;
     optional string localeId = 3;
     optional string distance = 4;
+}
+
+service RunnerRPC {
+    rpc login (AuthRequest) returns (AuthResponse);
 }
 
 message RPC {

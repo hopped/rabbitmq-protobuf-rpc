@@ -1,5 +1,5 @@
 
-Ë
+Å
 Runner.protoRunner""
 Pair
 key (	
@@ -96,5 +96,10 @@ RunRequest
 distance (	"&
 RPC
 method (	
-payload (B-
-com.hopped.running.protobufBRunnerProtosH
+payload ("4
+Ack
+success (
+error (2.Runner.Error2?
+	RunnerRPC2
+login.Runner.AuthRequest.Runner.AuthResponseB0
+com.hopped.running.protobufBRunnerProtosHˆ

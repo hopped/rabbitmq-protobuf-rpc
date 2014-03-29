@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 import com.google.protobuf.Descriptors.DescriptorValidationException;
 import com.google.protobuf.Message;
 import com.hopped.running.protobuf.ProtoDescriptionMapper;
-import com.hopped.running.protobuf.RunnerProtos.RPC;
 import com.hopped.running.rabbitmq.rpc.protocol.IRunnerService;
 import com.hopped.running.rabbitmq.rpc.protocol.RunnerServiceImpl;
 import com.rabbitmq.client.Channel;
@@ -91,28 +90,41 @@ public class RPCServer extends ARPCServer<RPCServer> {
         logger.info("RunnerRPCServer::processRequest");
 
         try {
-            RPC rpcMessage = RPC.parseFrom(delivery.getBody());
-            Method method = null;
-            // TODO: don't do that!
-            for (Method m : protocol.getMethods()) {
-                if (m.getName().equals(rpcMessage.getMethod())) {
-                    method = protocol.getMethod(rpcMessage.getMethod(),
-                            m.getParameterTypes());
-                }
-            }
-            // TODO: handle null pointer exception
+            Invoker invoker = Invoker.parseFrom(delivery.getBody());
+            String name = invoker.getMethod();
+            Message request = invoker.getRequestMessage();
+            Method method = protocol.getMethod(name, request.getClass());
 
-            byte[] payload = rpcMessage.getPayload().toByteArray();
-            Object obj = ProtoDescriptionMapper.INSTANCE
-                    .objectFromByteBuffer(payload);
-            Message message = (Message) method.invoke(instance, obj);
-            return ProtoDescriptionMapper.INSTANCE.messageToByteBuffer(message);
+            Message result = (Message) method.invoke(instance, request);
+            return (result == null) ? null : result.toByteArray();
         } catch (Exception e) {
-            logger.error(e.getMessage());
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+            return null;
         }
 
+        // try {
+        // RPC rpcMessage = RPC.parseFrom(delivery.getBody());
+        // Method method = null;
+        // // TODO: don't do that!
+        // for (Method m : protocol.getMethods()) {
+        // if (m.getName().equals(rpcMessage.getMethod())) {
+        // method = protocol.getMethod(rpcMessage.getMethod(),
+        // m.getParameterTypes());
+        // }
+        // }
+        // // TODO: handle null pointer exception
+        //
+        // byte[] payload = rpcMessage.getPayload().toByteArray();
+        // Object obj = ProtoDescriptionMapper.INSTANCE
+        // .objectFromByteBuffer(payload);
+        // Message message = (Message) method.invoke(instance, obj);
+        // return ProtoDescriptionMapper.INSTANCE.messageToByteBuffer(message);
+        // } catch (Exception e) {
+        // logger.error(e.getMessage());
+        // }
+
         // should never happen
-        return null;
     }
 
     /**

@@ -15301,6 +15301,238 @@ public final class RunnerProtos {
     // @@protoc_insertion_point(class_scope:Runner.Ack)
   }
 
+  /**
+   * Protobuf service {@code Runner.RunnerRPC}
+   */
+  public static abstract class RunnerRPC
+      implements com.google.protobuf.Service {
+    protected RunnerRPC() {}
+
+    public interface Interface {
+      /**
+       * <code>rpc login(.Runner.AuthRequest) returns (.Runner.AuthResponse);</code>
+       */
+      public abstract void login(
+          com.google.protobuf.RpcController controller,
+          com.hopped.running.protobuf.RunnerProtos.AuthRequest request,
+          com.google.protobuf.RpcCallback<com.hopped.running.protobuf.RunnerProtos.AuthResponse> done);
+
+    }
+
+    public static com.google.protobuf.Service newReflectiveService(
+        final Interface impl) {
+      return new RunnerRPC() {
+        @java.lang.Override
+        public  void login(
+            com.google.protobuf.RpcController controller,
+            com.hopped.running.protobuf.RunnerProtos.AuthRequest request,
+            com.google.protobuf.RpcCallback<com.hopped.running.protobuf.RunnerProtos.AuthResponse> done) {
+          impl.login(controller, request, done);
+        }
+
+      };
+    }
+
+    public static com.google.protobuf.BlockingService
+        newReflectiveBlockingService(final BlockingInterface impl) {
+      return new com.google.protobuf.BlockingService() {
+        public final com.google.protobuf.Descriptors.ServiceDescriptor
+            getDescriptorForType() {
+          return getDescriptor();
+        }
+
+        public final com.google.protobuf.Message callBlockingMethod(
+            com.google.protobuf.Descriptors.MethodDescriptor method,
+            com.google.protobuf.RpcController controller,
+            com.google.protobuf.Message request)
+            throws com.google.protobuf.ServiceException {
+          if (method.getService() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+              "Service.callBlockingMethod() given method descriptor for " +
+              "wrong service type.");
+          }
+          switch(method.getIndex()) {
+            case 0:
+              return impl.login(controller, (com.hopped.running.protobuf.RunnerProtos.AuthRequest)request);
+            default:
+              throw new java.lang.AssertionError("Can't get here.");
+          }
+        }
+
+        public final com.google.protobuf.Message
+            getRequestPrototype(
+            com.google.protobuf.Descriptors.MethodDescriptor method) {
+          if (method.getService() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+              "Service.getRequestPrototype() given method " +
+              "descriptor for wrong service type.");
+          }
+          switch(method.getIndex()) {
+            case 0:
+              return com.hopped.running.protobuf.RunnerProtos.AuthRequest.getDefaultInstance();
+            default:
+              throw new java.lang.AssertionError("Can't get here.");
+          }
+        }
+
+        public final com.google.protobuf.Message
+            getResponsePrototype(
+            com.google.protobuf.Descriptors.MethodDescriptor method) {
+          if (method.getService() != getDescriptor()) {
+            throw new java.lang.IllegalArgumentException(
+              "Service.getResponsePrototype() given method " +
+              "descriptor for wrong service type.");
+          }
+          switch(method.getIndex()) {
+            case 0:
+              return com.hopped.running.protobuf.RunnerProtos.AuthResponse.getDefaultInstance();
+            default:
+              throw new java.lang.AssertionError("Can't get here.");
+          }
+        }
+
+      };
+    }
+
+    /**
+     * <code>rpc login(.Runner.AuthRequest) returns (.Runner.AuthResponse);</code>
+     */
+    public abstract void login(
+        com.google.protobuf.RpcController controller,
+        com.hopped.running.protobuf.RunnerProtos.AuthRequest request,
+        com.google.protobuf.RpcCallback<com.hopped.running.protobuf.RunnerProtos.AuthResponse> done);
+
+    public static final
+        com.google.protobuf.Descriptors.ServiceDescriptor
+        getDescriptor() {
+      return com.hopped.running.protobuf.RunnerProtos.getDescriptor().getServices().get(0);
+    }
+    public final com.google.protobuf.Descriptors.ServiceDescriptor
+        getDescriptorForType() {
+      return getDescriptor();
+    }
+
+    public final void callMethod(
+        com.google.protobuf.Descriptors.MethodDescriptor method,
+        com.google.protobuf.RpcController controller,
+        com.google.protobuf.Message request,
+        com.google.protobuf.RpcCallback<
+          com.google.protobuf.Message> done) {
+      if (method.getService() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "Service.callMethod() given method descriptor for wrong " +
+          "service type.");
+      }
+      switch(method.getIndex()) {
+        case 0:
+          this.login(controller, (com.hopped.running.protobuf.RunnerProtos.AuthRequest)request,
+            com.google.protobuf.RpcUtil.<com.hopped.running.protobuf.RunnerProtos.AuthResponse>specializeCallback(
+              done));
+          return;
+        default:
+          throw new java.lang.AssertionError("Can't get here.");
+      }
+    }
+
+    public final com.google.protobuf.Message
+        getRequestPrototype(
+        com.google.protobuf.Descriptors.MethodDescriptor method) {
+      if (method.getService() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "Service.getRequestPrototype() given method " +
+          "descriptor for wrong service type.");
+      }
+      switch(method.getIndex()) {
+        case 0:
+          return com.hopped.running.protobuf.RunnerProtos.AuthRequest.getDefaultInstance();
+        default:
+          throw new java.lang.AssertionError("Can't get here.");
+      }
+    }
+
+    public final com.google.protobuf.Message
+        getResponsePrototype(
+        com.google.protobuf.Descriptors.MethodDescriptor method) {
+      if (method.getService() != getDescriptor()) {
+        throw new java.lang.IllegalArgumentException(
+          "Service.getResponsePrototype() given method " +
+          "descriptor for wrong service type.");
+      }
+      switch(method.getIndex()) {
+        case 0:
+          return com.hopped.running.protobuf.RunnerProtos.AuthResponse.getDefaultInstance();
+        default:
+          throw new java.lang.AssertionError("Can't get here.");
+      }
+    }
+
+    public static Stub newStub(
+        com.google.protobuf.RpcChannel channel) {
+      return new Stub(channel);
+    }
+
+    public static final class Stub extends com.hopped.running.protobuf.RunnerProtos.RunnerRPC implements Interface {
+      private Stub(com.google.protobuf.RpcChannel channel) {
+        this.channel = channel;
+      }
+
+      private final com.google.protobuf.RpcChannel channel;
+
+      public com.google.protobuf.RpcChannel getChannel() {
+        return channel;
+      }
+
+      public  void login(
+          com.google.protobuf.RpcController controller,
+          com.hopped.running.protobuf.RunnerProtos.AuthRequest request,
+          com.google.protobuf.RpcCallback<com.hopped.running.protobuf.RunnerProtos.AuthResponse> done) {
+        channel.callMethod(
+          getDescriptor().getMethods().get(0),
+          controller,
+          request,
+          com.hopped.running.protobuf.RunnerProtos.AuthResponse.getDefaultInstance(),
+          com.google.protobuf.RpcUtil.generalizeCallback(
+            done,
+            com.hopped.running.protobuf.RunnerProtos.AuthResponse.class,
+            com.hopped.running.protobuf.RunnerProtos.AuthResponse.getDefaultInstance()));
+      }
+    }
+
+    public static BlockingInterface newBlockingStub(
+        com.google.protobuf.BlockingRpcChannel channel) {
+      return new BlockingStub(channel);
+    }
+
+    public interface BlockingInterface {
+      public com.hopped.running.protobuf.RunnerProtos.AuthResponse login(
+          com.google.protobuf.RpcController controller,
+          com.hopped.running.protobuf.RunnerProtos.AuthRequest request)
+          throws com.google.protobuf.ServiceException;
+    }
+
+    private static final class BlockingStub implements BlockingInterface {
+      private BlockingStub(com.google.protobuf.BlockingRpcChannel channel) {
+        this.channel = channel;
+      }
+
+      private final com.google.protobuf.BlockingRpcChannel channel;
+
+      public com.hopped.running.protobuf.RunnerProtos.AuthResponse login(
+          com.google.protobuf.RpcController controller,
+          com.hopped.running.protobuf.RunnerProtos.AuthRequest request)
+          throws com.google.protobuf.ServiceException {
+        return (com.hopped.running.protobuf.RunnerProtos.AuthResponse) channel.callBlockingMethod(
+          getDescriptor().getMethods().get(0),
+          controller,
+          request,
+          com.hopped.running.protobuf.RunnerProtos.AuthResponse.getDefaultInstance());
+      }
+
+    }
+
+    // @@protoc_insertion_point(class_scope:Runner.RunnerRPC)
+  }
+
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Runner_Pair_descriptor;
   private static
@@ -15426,9 +15658,10 @@ public final class RunnerProtos {
       "nId\030\001 \001(\t\022\r\n\005runId\030\002 \003(\005\022\020\n\010localeId\030\003 \001" +
       "(\t\022\020\n\010distance\030\004 \001(\t\"&\n\003RPC\022\016\n\006method\030\001 " +
       "\002(\t\022\017\n\007payload\030\002 \002(\014\"4\n\003Ack\022\017\n\007success\030\001" +
-      " \002(\010\022\034\n\005error\030\002 \001(\0132\r.Runner.ErrorB-\n\033co" +
-      "m.hopped.running.protobufB\014RunnerProtosH" +
-      "\001"
+      " \002(\010\022\034\n\005error\030\002 \001(\0132\r.Runner.Error2?\n\tRu" +
+      "nnerRPC\0222\n\005login\022\023.Runner.AuthRequest\032\024." +
+      "Runner.AuthResponseB0\n\033com.hopped.runnin" +
+      "g.protobufB\014RunnerProtosH\001\210\001\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
