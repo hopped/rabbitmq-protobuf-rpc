@@ -27,7 +27,10 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.hopped.running.protobuf.RunnerProtos.Ack;
 import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
+import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
+import com.hopped.running.protobuf.RunnerProtos.User;
 import com.hopped.running.rabbitmq.RunnerClient;
 import com.rabbitmq.client.ConnectionFactory;
 
@@ -38,41 +41,23 @@ public class Demo {
 
     final static Logger logger = LoggerFactory.getLogger(Demo.class);
 
-    public static void main(String[] args) throws Exception {
-        logger.info("RabbitMQ RPC example (Java <> Perl)");
-
+    public static void main(final String... strings) throws IOException {
         ConnectionFactory factory = new ConnectionFactory();
         factory.setHost("localhost");
 
-        /* AUTHENTICATION */
-
-        RunnerClient client = new RunnerClient(factory, "runningRabbit");
-        try {
-            client.init();
-        } catch (IOException ioe) {
-            logger.error(ioe.getMessage());
-            return;
-        }
-
-        AuthRequest authRequest = AuthRequest.newBuilder()
+        AuthRequest request = AuthRequest.newBuilder()
                 .setUsername("hopped")
-                .setPassword("is_fantastic")
                 .build();
-        logger.info("Logging in 'hoppe' ...");
 
-        // AuthResponse response = client.login(authRequest);
-        // Error error = response.getError();
-        // if (error.getErrorCode() > 0) {
-        // logger.error(error.getErrorMessage());
-        // } else {
-        // User user = response.getUser();
-        // logger.info("  User 'hoppe' logged in.");
-        // logger.info("  Hello " + user.getAlias());
-        // }
+        RunnerClient client = new RunnerClient(factory, "runningRabbit").init();
+        IRunnerService service =
+                (IRunnerService) client.createProxy(IRunnerService.class);
+        AuthResponse res = service.login(request);
+        System.out.println("Returned sessionId: " + res.getSessionId());
 
-        /* TODO: GET LIST OF RUNS */
-
-        client.close();
-        logger.info("Done.");
+        Ack ack = service.setProfile(User.newBuilder().setAlias("hopped")
+                .build());
+        System.out.println(ack.getSuccess());
     }
+
 }

@@ -31,11 +31,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.Message;
-import com.hopped.running.demo.IRunnerService;
-import com.hopped.running.protobuf.RunnerProtos.Ack;
-import com.hopped.running.protobuf.RunnerProtos.AuthRequest;
-import com.hopped.running.protobuf.RunnerProtos.AuthResponse;
-import com.hopped.running.protobuf.RunnerProtos.User;
 import com.hopped.running.rabbitmq.rpc.RPCMessage;
 import com.rabbitmq.client.AMQP.BasicProperties;
 import com.rabbitmq.client.Channel;
@@ -169,22 +164,4 @@ public class RunnerClient implements InvocationHandler {
         return requestQueueName;
     }
 
-    public static void main(final String... strings) throws IOException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-
-        AuthRequest request = AuthRequest.newBuilder()
-                .setUsername("hopped")
-                .build();
-
-        RunnerClient client = new RunnerClient(factory, "runningRabbit").init();
-        IRunnerService service =
-                (IRunnerService) client.createProxy(IRunnerService.class);
-        AuthResponse res = service.login(request);
-        System.out.println("Returned sessionId: " + res.getSessionId());
-
-        Ack ack = service.setProfile(User.newBuilder().setAlias("hopped")
-                .build());
-        System.out.println(ack.getSuccess());
-    }
 }
