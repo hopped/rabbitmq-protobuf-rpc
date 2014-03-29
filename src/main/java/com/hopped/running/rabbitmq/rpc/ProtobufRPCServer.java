@@ -22,18 +22,13 @@
  */
 package com.hopped.running.rabbitmq.rpc;
 
-import java.io.IOException;
 import java.lang.reflect.Method;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.Message;
-import com.hopped.running.demo.IRunnerService;
-import com.hopped.running.demo.RunnerServiceImpl;
 import com.rabbitmq.client.Channel;
-import com.rabbitmq.client.Connection;
-import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.QueueingConsumer.Delivery;
 
 /**
@@ -88,28 +83,6 @@ public class ProtobufRPCServer extends ARPCServer<ProtobufRPCServer> {
             e.printStackTrace();
             return null;
         }
-    }
-
-    /**
-     * 
-     * @param args
-     * @throws IOException
-     */
-    public static void main(String[] args) throws IOException {
-        ConnectionFactory factory = new ConnectionFactory();
-        factory.setHost("localhost");
-        final String queueName = "runningRabbit";
-
-        Connection connection = factory.newConnection();
-        Channel channel = connection.createChannel();
-        channel.basicQos(1);
-        channel.queueDeclare(queueName, false, false, false, null);
-
-        ProtobufRPCServer server = new ProtobufRPCServer(channel, queueName)
-                .init()
-                .setInstance(new RunnerServiceImpl())
-                .setProtocol(IRunnerService.class);
-        server.consume();
     }
 
 }
