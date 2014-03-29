@@ -30,7 +30,6 @@ import org.slf4j.LoggerFactory;
 
 import com.google.protobuf.Descriptors.DescriptorValidationException;
 import com.google.protobuf.Message;
-import com.hopped.running.protobuf.ProtoDescriptionMapper;
 import com.hopped.running.rabbitmq.rpc.protocol.IRunnerService;
 import com.hopped.running.rabbitmq.rpc.protocol.RunnerServiceImpl;
 import com.rabbitmq.client.Channel;
@@ -63,18 +62,6 @@ public class RPCServer extends ARPCServer<RPCServer> {
      */
     @Override
     public RPCServer self() {
-        return this;
-    }
-
-    /**
-     * https://planet.jboss.org/post/
-     * generic_marshalling_with_google_protocol_buffers
-     * ;jsessionid=8B818CBA5012141CE0AC62E9BADB130A
-     * 
-     * @param filename
-     */
-    public RPCServer setProtobufDescription(final String filename) {
-        ProtoDescriptionMapper.INSTANCE.generateMapping(filename);
         return this;
     }
 
@@ -145,7 +132,6 @@ public class RPCServer extends ARPCServer<RPCServer> {
 
         RPCServer server = new RPCServer(channel, queueName)
                 .init()
-                .setProtobufDescription("src/resources/protobuf/Runner.desc")
                 .setInstance(new RunnerServiceImpl())
                 .setProtocol(IRunnerService.class);
         server.consume();
