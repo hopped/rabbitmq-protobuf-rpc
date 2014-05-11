@@ -9,7 +9,7 @@ This code is still under development, and no release is yet ready. Please be pat
 
 ## Contributing
 Find a bug? Have a feature request?
-Please [create](https://github.com/hopped/website-boilerplate-bootstrap3/issues) an issue.
+Please [create](https://github.com/hopped/rabbitmq-rpc-protobuf/issues) an issue.
 
 
 ## Authors
