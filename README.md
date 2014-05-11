@@ -4,7 +4,7 @@
 
 
 ## Remarks
-This code is still under development, and no release it yet ready. Please be patient.
+This code is still under development, and no release is yet ready. Please be patient.
 
 
 ## Contributing
