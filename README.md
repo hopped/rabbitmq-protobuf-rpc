@@ -1,4 +1,4 @@
-# rabbitmq-rpc-protobuf
+# rabbitmq-protobuf-rpc
 
 > Example of using RabbitMQ with Google's Protocol Buffers for serialization in RPC mode.
 
